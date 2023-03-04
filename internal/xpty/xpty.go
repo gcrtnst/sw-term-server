@@ -9,19 +9,15 @@ import (
 
 var ErrUnsupported = errors.New("platform not supported by xpty")
 
-func Open() (Master, Slave, error) {
+func Open() (Terminal, error) {
 	return open()
 }
 
-type Master interface {
-	io.ReadWriteCloser
-	GetSize() (int, int, error)
-	SetSize(row, col int) error
-}
-
-type Slave interface {
+type Terminal interface {
 	io.ReadWriteCloser
 	Start(cmd *Cmd) (*os.Process, error)
+	GetSize() (int, int, error)
+	SetSize(row, col int) error
 }
 
 type Cmd struct {

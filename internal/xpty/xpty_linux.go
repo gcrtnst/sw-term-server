@@ -12,24 +12,42 @@ import (
 	"golang.org/x/sys/unix"
 )
 
-type master struct {
-	f *os.File
+type terminal struct {
+	m *os.File
+	s *os.File
 }
 
-func (m *master) Read(p []byte) (int, error) {
-	return m.f.Read(p)
+func (t *terminal) Read(p []byte) (int, error) {
+	return t.m.Read(p)
 }
 
-func (m *master) Write(p []byte) (int, error) {
-	return m.f.Write(p)
+func (t *terminal) Write(p []byte) (int, error) {
+	return t.m.Write(p)
 }
 
-func (m *master) Close() error {
-	return m.f.Close()
+func (t *terminal) Close() error {
+	errs := t.s.Close()
+	errm := t.m.Close()
+
+	if errm != nil {
+		return errm
+	}
+	return errs
 }
 
-func (m *master) GetSize() (int, int, error) {
-	raw, err := m.f.SyscallConn()
+func (t *terminal) Start(cmd *Cmd) (*os.Process, error) {
+	return os.StartProcess(cmd.Path, cmd.Args[:], &os.ProcAttr{
+		Files: []*os.File{t.s, t.s, t.s},
+		Sys: &syscall.SysProcAttr{
+			Setsid:  true,
+			Setctty: true,
+			Ctty:    0,
+		},
+	})
+}
+
+func (t *terminal) GetSize() (int, int, error) {
+	raw, err := t.m.SyscallConn()
 	if err != nil {
 		return 0, 0, err
 	}
@@ -48,12 +66,12 @@ func (m *master) GetSize() (int, int, error) {
 	return int(ws.Row), int(ws.Col), nil
 }
 
-func (m *master) SetSize(row, col int) error {
+func (t *terminal) SetSize(row, col int) error {
 	if row < 0 || math.MaxUint16 < row || col < 0 || math.MaxUint16 < col {
 		return &SizeError{Row: row, Col: col}
 	}
 
-	raw, err := m.f.SyscallConn()
+	raw, err := t.m.SyscallConn()
 	if err != nil {
 		return err
 	}
@@ -75,37 +93,10 @@ func (m *master) SetSize(row, col int) error {
 	return nil
 }
 
-type slave struct {
-	f *os.File
-}
-
-func (s *slave) Read(p []byte) (int, error) {
-	return s.f.Read(p)
-}
-
-func (s *slave) Write(p []byte) (int, error) {
-	return s.f.Write(p)
-}
-
-func (s *slave) Close() error {
-	return s.f.Close()
-}
-
-func (s *slave) Start(cmd *Cmd) (*os.Process, error) {
-	return os.StartProcess(cmd.Path, cmd.Args[:], &os.ProcAttr{
-		Files: []*os.File{s.f, s.f, s.f},
-		Sys: &syscall.SysProcAttr{
-			Setsid:  true,
-			Setctty: true,
-			Ctty:    0,
-		},
-	})
-}
-
-func open() (m Master, s Slave, err error) {
+func open() (t Terminal, err error) {
 	ptm, err := os.OpenFile("/dev/ptmx", os.O_RDWR, 0)
 	if err != nil {
-		return nil, nil, err
+		return nil, err
 	}
 	defer func() {
 		if err != nil {
@@ -115,22 +106,21 @@ func open() (m Master, s Slave, err error) {
 
 	ptsn, err := ptsname(ptm)
 	if err != nil {
-		return nil, nil, err
+		return nil, err
 	}
 
 	err = unlockpt(ptm)
 	if err != nil {
-		return nil, nil, err
+		return nil, err
 	}
 
 	pts, err := os.OpenFile(ptsn, os.O_RDWR|unix.O_NOCTTY, 0)
 	if err != nil {
-		return nil, nil, err
+		return nil, err
 	}
 
-	m = &master{f: ptm}
-	s = &slave{f: pts}
-	return m, s, nil
+	t = &terminal{m: ptm, s: pts}
+	return t, nil
 }
 
 func ptsname(ptm *os.File) (string, error) {

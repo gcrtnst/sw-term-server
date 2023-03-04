@@ -43,32 +43,22 @@ func parent() {
 	}()
 	port := lis.Addr().(*net.TCPAddr).Port
 
-	m, s, err := xpty.Open()
+	pty, err := xpty.Open()
 	if err != nil {
 		panic(err)
 	}
 	defer func() {
-		if s == nil {
+		if pty == nil {
 			return
 		}
 
-		err := s.Close()
-		if err != nil {
-			panic(err)
-		}
-	}()
-	defer func() {
-		if m == nil {
-			return
-		}
-
-		err := m.Close()
+		err := pty.Close()
 		if err != nil {
 			panic(err)
 		}
 	}()
 
-	proc, err := s.Start(&xpty.Cmd{
+	proc, err := pty.Start(&xpty.Cmd{
 		Path: exe,
 		Args: []string{exe, "-port", strconv.Itoa(port)},
 	})
@@ -85,12 +75,6 @@ func parent() {
 			panic(err)
 		}
 	}()
-
-	err = s.Close()
-	s = nil
-	if err != nil {
-		panic(err)
-	}
 
 	conn, err := lis.AcceptTCP()
 	if err != nil {
@@ -109,7 +93,7 @@ func parent() {
 		}
 	}()
 
-	row, col, err := m.GetSize()
+	row, col, err := pty.GetSize()
 	if err != nil {
 		panic(err)
 	}
@@ -126,12 +110,12 @@ func parent() {
 		panic(fmt.Errorf("%#v", size))
 	}
 
-	err = m.SetSize(120, 30)
+	err = pty.SetSize(120, 30)
 	if err != nil {
 		panic(err)
 	}
 
-	row, col, err = m.GetSize()
+	row, col, err = pty.GetSize()
 	if err != nil {
 		panic(err)
 	}
@@ -153,8 +137,8 @@ func parent() {
 		panic(err)
 	}
 
-	err = m.Close()
-	m = nil
+	err = pty.Close()
+	pty = nil
 	if err != nil {
 		panic(err)
 	}
