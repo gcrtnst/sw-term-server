@@ -240,6 +240,7 @@ func TestKeyboardServiceServeAPI(t *testing.T) {
 
 			mt.ErrOpen = nil
 			slot.start()
+			slot.term.pc = nil
 			slot.Stop()
 			gotMTOut, _ := io.ReadAll(mt.Computer())
 
@@ -346,6 +347,10 @@ func TestScreenServiceServeAPI(t *testing.T) {
 
 			gotResp := srv.ServeAPI(nil)
 			gotLog := logbuf.Bytes()
+
+			if slot.term != nil {
+				slot.term.pc = nil
+			}
 			slot.Stop()
 
 			if gotResp.Code != tc.wantResp.Code {

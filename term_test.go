@@ -250,6 +250,7 @@ func TestTermKeyboard(t *testing.T) {
 			if err != nil {
 				t.Errorf("new: %s", err.Error())
 			}
+			term.pc = nil
 
 			gotOK := term.Keyboard(tc.inKey, tc.inMod)
 			err = term.Close()
@@ -288,6 +289,7 @@ func TestTermClose(t *testing.T) {
 	if err != nil {
 		t.Errorf("new: %s", err.Error())
 	}
+	term.pc = nil
 
 	err = term.Close()
 	if err != nil {

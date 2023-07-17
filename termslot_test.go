@@ -93,6 +93,10 @@ func TestTermSlotKeyboard(t *testing.T) {
 			mt.ErrOpen = tc.inMTErrOpen
 			gotErr := slot.Keyboard(tc.inKey, tc.inMod)
 			gotMTOpenTerminal := mt.OpenTerminal
+
+			if slot.term != nil {
+				slot.term.pc = nil
+			}
 			slot.Stop()
 
 			gotOut := []byte{}
@@ -291,6 +295,10 @@ func TestTermSlotCapture(t *testing.T) {
 			mt.ErrOpen = tc.inMTErrOpen
 			gotSS, gotErr := slot.Capture()
 			gotMTOpenTerminal := mt.OpenTerminal
+
+			if slot.term != nil {
+				slot.term.pc = nil
+			}
 			slot.Stop()
 
 			if !reflect.DeepEqual(gotSS, tc.wantSS) {
@@ -324,6 +332,7 @@ func TestTermSlotStop(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
+	slot.term.pc = nil
 
 	slot.Stop()
 	if mt.OpenTerminal {

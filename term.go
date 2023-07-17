@@ -14,6 +14,7 @@ type Term struct {
 	pt xpty.Terminal
 	ps xpty.Session
 	vt *vterm.VTerm
+	pc *os.Process
 
 	oc sync.Once
 	di <-chan struct{}
@@ -75,7 +76,7 @@ func NewTerm(cfg TermConfig) (*Term, error) {
 		return nil, err
 	}
 
-	proc, err := ps.StartProcess(cfg.Cmd)
+	pc, err := ps.StartProcess(cfg.Cmd)
 	if err != nil {
 		if err := ps.Close(); err != nil {
 			panic(err)
@@ -91,26 +92,11 @@ func NewTerm(cfg TermConfig) (*Term, error) {
 		return nil, err
 	}
 
-	err = proc.Release()
-	if err != nil {
-		if err := ps.Close(); err != nil {
-			panic(err)
-		}
-		if err := pt.Close(); err != nil {
-			panic(err)
-		}
-		if err := vo.Close(); err != nil {
-			panic(err)
-		}
-		<-di
-		<-do
-		panic(err)
-	}
-
 	t := &Term{
 		pt: pt,
 		ps: ps,
 		vt: vt,
+		pc: pc,
 		di: di,
 		do: do,
 	}
@@ -154,6 +140,13 @@ func (t *Term) close() {
 	err = t.vt.Output().Close()
 	if err != nil {
 		panic(err)
+	}
+
+	if t.pc != nil {
+		_, err = t.pc.Wait()
+		if err != nil {
+			panic(err)
+		}
 	}
 
 	<-t.di
