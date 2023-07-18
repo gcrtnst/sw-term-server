@@ -87,6 +87,6 @@ func BuildServeMux(slot *TermSlot, logw io.Writer) *http.ServeMux {
 func BuildServer(slot *TermSlot, logw io.Writer) *http.Server {
 	return &http.Server{
 		Handler:  BuildServeMux(slot, logw),
-		ErrorLog: log.New(logw, "server: ", logFlags),
+		ErrorLog: log.New(logw, "server: error: ", logFlags),
 	}
 }
