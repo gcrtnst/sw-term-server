@@ -17,15 +17,11 @@ func main() {
 	shell := flag.String("shell", defaultShell(), "shell")
 	flag.Parse()
 
-	if *port < 0 || 65536 < *port {
-		fmt.Fprintln(os.Stderr, "invalid port")
-		os.Exit(1)
-	}
-	if *row < 0 {
+	if *row <= 0 {
 		fmt.Fprintln(os.Stderr, "invalid row")
 		os.Exit(1)
 	}
-	if *col < 0 {
+	if *col <= 0 {
 		fmt.Fprintln(os.Stderr, "invalid col")
 		os.Exit(1)
 	}
