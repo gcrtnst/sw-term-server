@@ -60,7 +60,7 @@ func defaultShell() string {
 		}
 
 		path, err := exec.LookPath("cmd.exe")
-		if err != nil {
+		if err == nil {
 			return path
 		}
 
@@ -73,7 +73,7 @@ func defaultShell() string {
 	}
 
 	path, err := exec.LookPath("sh")
-	if err != nil {
+	if err == nil {
 		return path
 	}
 
