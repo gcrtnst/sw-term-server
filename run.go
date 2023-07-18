@@ -35,8 +35,7 @@ func Run(cfg MainConfig) int {
 		logger.Printf("error: %s", err.Error())
 		return 1
 	}
-	addr = lis.Addr().(*net.TCPAddr)
-	logger.Printf("listening on %s", addr.String())
+	logger.Printf("listening on %s", lis.Addr().(*net.TCPAddr).String())
 
 	server := BuildServer(slot, cfg.LogWriter)
 	serverDone := make(chan error)
