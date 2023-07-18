@@ -20,8 +20,8 @@ type MainConfig struct {
 func Run(cfg MainConfig) int {
 	logger := log.New(cfg.LogWriter, "main: ", logFlags)
 
-	ctx, cancel := signal.NotifyContext(context.Background(), signals...)
-	defer cancel()
+	ctx, stop := signal.NotifyContext(context.Background(), signals...)
+	defer stop()
 
 	slot := NewTermSlot(cfg.TermConfig)
 	defer slot.Stop()
@@ -42,10 +42,12 @@ func Run(cfg MainConfig) int {
 	serverDone := make(chan error)
 	go func() {
 		err := server.Serve(lis)
+		stop()
 		serverDone <- err
 		close(serverDone)
 	}()
 	<-ctx.Done()
+	stop()
 
 	code := 0
 	err = server.Shutdown(context.Background())
