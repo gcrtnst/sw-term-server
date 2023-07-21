@@ -698,6 +698,12 @@ func TestScreenShotSize(t *testing.T) {
 			wantCol: 0,
 		},
 		{
+			name:    "ZeroLen",
+			inSS:    ScreenShot{Stride: 2, Cell: make([]Cell, 0)},
+			wantRow: 0,
+			wantCol: 0,
+		},
+		{
 			name:    "InvalidStride",
 			inSS:    ScreenShot{Stride: 2, Cell: make([]Cell, 3)},
 			wantRow: 0,

@@ -164,7 +164,7 @@ type ScreenShot struct {
 }
 
 func (ss ScreenShot) Size() (int, int) {
-	if ss.Stride <= 0 || len(ss.Cell)%ss.Stride != 0 {
+	if ss.Stride <= 0 || len(ss.Cell) <= 0 || len(ss.Cell)%ss.Stride != 0 {
 		return 0, 0
 	}
 
