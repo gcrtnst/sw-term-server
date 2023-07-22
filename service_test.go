@@ -279,14 +279,111 @@ func TestScreenServiceServeAPI(t *testing.T) {
 			inMTErrOpen: nil,
 			wantResp: &ServiceResponse{
 				Code: http.StatusOK,
-				Body: []byte("" +
-					"#sw-term/screen\r\n" +
-					"screen,30,120\r\n" +
-					"cursor,1,1,1,1,1\r\n" +
-					"cell,0,0,char,1,A\r\n" +
-					"cell,0,1,char,1,B\r\n" +
-					"cell,1,0,char,1,C\r\n",
-				),
+				Body: []byte{
+					'%', 'S', 'W', 'T', 'S', 'C', 'R', 'N', // (signature)
+
+					0x01,                                                                                     // CursorVisible
+					0x01,                                                                                     // CursorBlink
+					0x01,                                                                                     // CursorShape
+					0x01, 0x5C, 0x30, 0x5C, 0x30, 0x5C, 0x30, 0x5C, 0x30, 0x5C, 0x30, 0x5C, 0x30, 0x5C, 0x30, // CursorPos.Row
+					0x01, 0x5C, 0x30, 0x5C, 0x30, 0x5C, 0x30, 0x5C, 0x30, 0x5C, 0x30, 0x5C, 0x30, 0x5C, 0x30, // CursorPos.Col
+					0x02, 0x5C, 0x30, 0x5C, 0x30, 0x5C, 0x30, 0x5C, 0x30, 0x5C, 0x30, 0x5C, 0x30, 0x5C, 0x30, // Stride
+
+					0x5C, 0x30, // Cell[i].Attrs.Bold
+					0x5C, 0x30, // Cell[i].Attrs.Underline
+					0x5C, 0x30, // Cell[i].Attrs.Italic
+					0x5C, 0x30, // Cell[i].Attrs.Blink
+					0x5C, 0x30, // Cell[i].Attrs.Reverse
+					0x5C, 0x30, // Cell[i].Attrs.Conceal
+					0x5C, 0x30, // Cell[i].Attrs.Strike
+					0x5C, 0x30, // Cell[i].Attrs.Font
+					0x5C, 0x30, // Cell[i].Attrs.DWL
+					0x5C, 0x30, // Cell[i].Attrs.DHL
+					0x5C, 0x30, // Cell[i].Attrs.Small
+					0x5C, 0x30, // Cell[i].Attrs.Baseline
+					0x03,       // Cell[i].FG.Type
+					0x07,       // Cell[i].FG.Idx
+					0x5C, 0x30, // (padding)
+					0x5C, 0x30, // (padding)
+					0x05,       // Cell[i].BG.Type
+					0x5C, 0x30, // Cell[i].BG.Idx
+					0x5C, 0x30, // (padding)
+					0x5C, 0x30, // (padding)
+					0x01,                                                                                     // Cell[i].Width
+					0x01, 0x5C, 0x30, 0x5C, 0x30, 0x5C, 0x30, 0x5C, 0x30, 0x5C, 0x30, 0x5C, 0x30, 0x5C, 0x30, // len(string(Cell[i].Runes))
+					0x41, // string(Cell[i].Runes)
+
+					0x5C, 0x30, // Cell[i].Attrs.Bold
+					0x5C, 0x30, // Cell[i].Attrs.Underline
+					0x5C, 0x30, // Cell[i].Attrs.Italic
+					0x5C, 0x30, // Cell[i].Attrs.Blink
+					0x5C, 0x30, // Cell[i].Attrs.Reverse
+					0x5C, 0x30, // Cell[i].Attrs.Conceal
+					0x5C, 0x30, // Cell[i].Attrs.Strike
+					0x5C, 0x30, // Cell[i].Attrs.Font
+					0x5C, 0x30, // Cell[i].Attrs.DWL
+					0x5C, 0x30, // Cell[i].Attrs.DHL
+					0x5C, 0x30, // Cell[i].Attrs.Small
+					0x5C, 0x30, // Cell[i].Attrs.Baseline
+					0x03,       // Cell[i].FG.Type
+					0x07,       // Cell[i].FG.Idx
+					0x5C, 0x30, // (padding)
+					0x5C, 0x30, // (padding)
+					0x05,       // Cell[i].BG.Type
+					0x5C, 0x30, // Cell[i].BG.Idx
+					0x5C, 0x30, // (padding)
+					0x5C, 0x30, // (padding)
+					0x01,                                                                                     // Cell[i].Width
+					0x01, 0x5C, 0x30, 0x5C, 0x30, 0x5C, 0x30, 0x5C, 0x30, 0x5C, 0x30, 0x5C, 0x30, 0x5C, 0x30, // len(string(Cell[i].Runes))
+					0x42, // string(Cell[i].Runes)
+
+					0x5C, 0x30, // Cell[i].Attrs.Bold
+					0x5C, 0x30, // Cell[i].Attrs.Underline
+					0x5C, 0x30, // Cell[i].Attrs.Italic
+					0x5C, 0x30, // Cell[i].Attrs.Blink
+					0x5C, 0x30, // Cell[i].Attrs.Reverse
+					0x5C, 0x30, // Cell[i].Attrs.Conceal
+					0x5C, 0x30, // Cell[i].Attrs.Strike
+					0x5C, 0x30, // Cell[i].Attrs.Font
+					0x5C, 0x30, // Cell[i].Attrs.DWL
+					0x5C, 0x30, // Cell[i].Attrs.DHL
+					0x5C, 0x30, // Cell[i].Attrs.Small
+					0x5C, 0x30, // Cell[i].Attrs.Baseline
+					0x03,       // Cell[i].FG.Type
+					0x07,       // Cell[i].FG.Idx
+					0x5C, 0x30, // (padding)
+					0x5C, 0x30, // (padding)
+					0x05,       // Cell[i].BG.Type
+					0x5C, 0x30, // Cell[i].BG.Idx
+					0x5C, 0x30, // (padding)
+					0x5C, 0x30, // (padding)
+					0x01,                                                                                     // Cell[i].Width
+					0x01, 0x5C, 0x30, 0x5C, 0x30, 0x5C, 0x30, 0x5C, 0x30, 0x5C, 0x30, 0x5C, 0x30, 0x5C, 0x30, // len(string(Cell[i].Runes))
+					0x43, // string(Cell[i].Runes)
+
+					0x5C, 0x30, // Cell[i].Attrs.Bold
+					0x5C, 0x30, // Cell[i].Attrs.Underline
+					0x5C, 0x30, // Cell[i].Attrs.Italic
+					0x5C, 0x30, // Cell[i].Attrs.Blink
+					0x5C, 0x30, // Cell[i].Attrs.Reverse
+					0x5C, 0x30, // Cell[i].Attrs.Conceal
+					0x5C, 0x30, // Cell[i].Attrs.Strike
+					0x5C, 0x30, // Cell[i].Attrs.Font
+					0x5C, 0x30, // Cell[i].Attrs.DWL
+					0x5C, 0x30, // Cell[i].Attrs.DHL
+					0x5C, 0x30, // Cell[i].Attrs.Small
+					0x5C, 0x30, // Cell[i].Attrs.Baseline
+					0x03,       // Cell[i].FG.Type
+					0x07,       // Cell[i].FG.Idx
+					0x5C, 0x30, // (padding)
+					0x5C, 0x30, // (padding)
+					0x05,       // Cell[i].BG.Type
+					0x5C, 0x30, // Cell[i].BG.Idx
+					0x5C, 0x30, // (padding)
+					0x5C, 0x30, // (padding)
+					0x01,                                                                                           // Cell[i].Width
+					0x5C, 0x30, 0x5C, 0x30, 0x5C, 0x30, 0x5C, 0x30, 0x5C, 0x30, 0x5C, 0x30, 0x5C, 0x30, 0x5C, 0x30, // len(string(Cell[i].Runes))
+				},
 			},
 			wantLog: []byte{},
 		},
@@ -311,8 +408,8 @@ func TestScreenServiceServeAPI(t *testing.T) {
 			}
 			cfg := TermConfig{
 				Open: mt.Open,
-				Row:  30,
-				Col:  120,
+				Row:  2,
+				Col:  2,
 				Cmd: xpty.Cmd{
 					Path: "bash",
 					Args: []string{"--version"},

@@ -1,8 +1,6 @@
 package main
 
 import (
-	"bytes"
-	"encoding/csv"
 	"errors"
 	"fmt"
 	"log"
@@ -112,20 +110,14 @@ func (srv *ScreenService) ServeAPI(query url.Values) *ServiceResponse {
 		}
 	}
 
-	buf := new(bytes.Buffer)
-	w := csv.NewWriter(buf)
-	w.Comma = ','
-	w.UseCRLF = true
-
-	script := EncodeScreenShot(ss)
-	err = w.WriteAll(script)
-	if err != nil {
-		panic(err)
-	}
+	var b []byte
+	b = EncodeScreenShot(ss)
+	b = EscapeZero(b)
+	b = append([]byte("%SWTSCRN"), b...)
 
 	return &ServiceResponse{
 		Code: http.StatusOK,
-		Body: buf.Bytes(),
+		Body: b,
 	}
 }
 
