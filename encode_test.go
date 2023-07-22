@@ -789,24 +789,29 @@ func TestEscapeZero(t *testing.T) {
 			want: []byte{},
 		},
 		{
-			name: "Zero",
+			name: "0x00",
 			in:   []byte{0x00},
-			want: []byte(`\0`),
-		},
-		{
-			name: "Backslash",
-			in:   []byte(`\`),
-			want: []byte(`\\`),
-		},
-		{
-			name: "Normal",
-			in:   []byte{0x01},
 			want: []byte{0x01},
 		},
 		{
+			name: "0x5C",
+			in:   []byte{0x5C},
+			want: []byte{0x5D},
+		},
+		{
+			name: "0xFE",
+			in:   []byte{0xFE},
+			want: []byte{0xFF, 0xFE},
+		},
+		{
+			name: "0xFF",
+			in:   []byte{0xFF},
+			want: []byte{0xFF, 0xFF},
+		},
+		{
 			name: "Multiple",
-			in:   []byte{0x00, 0x01, 0x5C},
-			want: []byte{0x5C, 0x30, 0x01, 0x5C, 0x5C},
+			in:   []byte{0x00, 0x5C, 0xFE, 0xFF},
+			want: []byte{0x01, 0x5D, 0xFF, 0xFE, 0xFF, 0xFF},
 		},
 	}
 

@@ -90,12 +90,12 @@ func EscapeZero(b []byte) []byte {
 	buf := new(bytes.Buffer)
 	for _, c := range b {
 		switch c {
-		case 0x00:
-			_, _ = buf.WriteString(`\0`)
-		case '\\':
-			_, _ = buf.WriteString(`\\`)
+		case 0xFE:
+			_, _ = buf.Write([]byte{0xFF, 0xFE})
+		case 0xFF:
+			_, _ = buf.Write([]byte{0xFF, 0xFF})
 		default:
-			_ = buf.WriteByte(c)
+			_ = buf.WriteByte(c + 0x01)
 		}
 	}
 	return buf.Bytes()

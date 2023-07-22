@@ -282,107 +282,107 @@ func TestScreenServiceServeAPI(t *testing.T) {
 				Body: []byte{
 					'%', 'S', 'W', 'T', 'S', 'C', 'R', 'N', // (signature)
 
-					0x01,                                                                                     // CursorVisible
-					0x01,                                                                                     // CursorBlink
-					0x01,                                                                                     // CursorShape
-					0x01, 0x5C, 0x30, 0x5C, 0x30, 0x5C, 0x30, 0x5C, 0x30, 0x5C, 0x30, 0x5C, 0x30, 0x5C, 0x30, // CursorPos.Row
-					0x01, 0x5C, 0x30, 0x5C, 0x30, 0x5C, 0x30, 0x5C, 0x30, 0x5C, 0x30, 0x5C, 0x30, 0x5C, 0x30, // CursorPos.Col
-					0x02, 0x5C, 0x30, 0x5C, 0x30, 0x5C, 0x30, 0x5C, 0x30, 0x5C, 0x30, 0x5C, 0x30, 0x5C, 0x30, // Stride
+					0x02,                                           // CursorVisible
+					0x02,                                           // CursorBlink
+					0x02,                                           // CursorShape
+					0x02, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, // CursorPos.Row
+					0x02, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, // CursorPos.Col
+					0x03, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, // Stride
 
-					0x5C, 0x30, // Cell[i].Attrs.Bold
-					0x5C, 0x30, // Cell[i].Attrs.Underline
-					0x5C, 0x30, // Cell[i].Attrs.Italic
-					0x5C, 0x30, // Cell[i].Attrs.Blink
-					0x5C, 0x30, // Cell[i].Attrs.Reverse
-					0x5C, 0x30, // Cell[i].Attrs.Conceal
-					0x5C, 0x30, // Cell[i].Attrs.Strike
-					0x5C, 0x30, // Cell[i].Attrs.Font
-					0x5C, 0x30, // Cell[i].Attrs.DWL
-					0x5C, 0x30, // Cell[i].Attrs.DHL
-					0x5C, 0x30, // Cell[i].Attrs.Small
-					0x5C, 0x30, // Cell[i].Attrs.Baseline
-					0x03,       // Cell[i].FG.Type
-					0x07,       // Cell[i].FG.Idx
-					0x5C, 0x30, // (padding)
-					0x5C, 0x30, // (padding)
-					0x05,       // Cell[i].BG.Type
-					0x5C, 0x30, // Cell[i].BG.Idx
-					0x5C, 0x30, // (padding)
-					0x5C, 0x30, // (padding)
-					0x01,                                                                                     // Cell[i].Width
-					0x01, 0x5C, 0x30, 0x5C, 0x30, 0x5C, 0x30, 0x5C, 0x30, 0x5C, 0x30, 0x5C, 0x30, 0x5C, 0x30, // len(string(Cell[i].Runes))
-					0x41, // string(Cell[i].Runes)
-
-					0x5C, 0x30, // Cell[i].Attrs.Bold
-					0x5C, 0x30, // Cell[i].Attrs.Underline
-					0x5C, 0x30, // Cell[i].Attrs.Italic
-					0x5C, 0x30, // Cell[i].Attrs.Blink
-					0x5C, 0x30, // Cell[i].Attrs.Reverse
-					0x5C, 0x30, // Cell[i].Attrs.Conceal
-					0x5C, 0x30, // Cell[i].Attrs.Strike
-					0x5C, 0x30, // Cell[i].Attrs.Font
-					0x5C, 0x30, // Cell[i].Attrs.DWL
-					0x5C, 0x30, // Cell[i].Attrs.DHL
-					0x5C, 0x30, // Cell[i].Attrs.Small
-					0x5C, 0x30, // Cell[i].Attrs.Baseline
-					0x03,       // Cell[i].FG.Type
-					0x07,       // Cell[i].FG.Idx
-					0x5C, 0x30, // (padding)
-					0x5C, 0x30, // (padding)
-					0x05,       // Cell[i].BG.Type
-					0x5C, 0x30, // Cell[i].BG.Idx
-					0x5C, 0x30, // (padding)
-					0x5C, 0x30, // (padding)
-					0x01,                                                                                     // Cell[i].Width
-					0x01, 0x5C, 0x30, 0x5C, 0x30, 0x5C, 0x30, 0x5C, 0x30, 0x5C, 0x30, 0x5C, 0x30, 0x5C, 0x30, // len(string(Cell[i].Runes))
+					0x01,                                           // Cell[i].Attrs.Bold
+					0x01,                                           // Cell[i].Attrs.Underline
+					0x01,                                           // Cell[i].Attrs.Italic
+					0x01,                                           // Cell[i].Attrs.Blink
+					0x01,                                           // Cell[i].Attrs.Reverse
+					0x01,                                           // Cell[i].Attrs.Conceal
+					0x01,                                           // Cell[i].Attrs.Strike
+					0x01,                                           // Cell[i].Attrs.Font
+					0x01,                                           // Cell[i].Attrs.DWL
+					0x01,                                           // Cell[i].Attrs.DHL
+					0x01,                                           // Cell[i].Attrs.Small
+					0x01,                                           // Cell[i].Attrs.Baseline
+					0x04,                                           // Cell[i].FG.Type
+					0x08,                                           // Cell[i].FG.Idx
+					0x01,                                           // (padding)
+					0x01,                                           // (padding)
+					0x06,                                           // Cell[i].BG.Type
+					0x01,                                           // Cell[i].BG.Idx
+					0x01,                                           // (padding)
+					0x01,                                           // (padding)
+					0x02,                                           // Cell[i].Width
+					0x02, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, // len(string(Cell[i].Runes))
 					0x42, // string(Cell[i].Runes)
 
-					0x5C, 0x30, // Cell[i].Attrs.Bold
-					0x5C, 0x30, // Cell[i].Attrs.Underline
-					0x5C, 0x30, // Cell[i].Attrs.Italic
-					0x5C, 0x30, // Cell[i].Attrs.Blink
-					0x5C, 0x30, // Cell[i].Attrs.Reverse
-					0x5C, 0x30, // Cell[i].Attrs.Conceal
-					0x5C, 0x30, // Cell[i].Attrs.Strike
-					0x5C, 0x30, // Cell[i].Attrs.Font
-					0x5C, 0x30, // Cell[i].Attrs.DWL
-					0x5C, 0x30, // Cell[i].Attrs.DHL
-					0x5C, 0x30, // Cell[i].Attrs.Small
-					0x5C, 0x30, // Cell[i].Attrs.Baseline
-					0x03,       // Cell[i].FG.Type
-					0x07,       // Cell[i].FG.Idx
-					0x5C, 0x30, // (padding)
-					0x5C, 0x30, // (padding)
-					0x05,       // Cell[i].BG.Type
-					0x5C, 0x30, // Cell[i].BG.Idx
-					0x5C, 0x30, // (padding)
-					0x5C, 0x30, // (padding)
-					0x01,                                                                                     // Cell[i].Width
-					0x01, 0x5C, 0x30, 0x5C, 0x30, 0x5C, 0x30, 0x5C, 0x30, 0x5C, 0x30, 0x5C, 0x30, 0x5C, 0x30, // len(string(Cell[i].Runes))
+					0x01,                                           // Cell[i].Attrs.Bold
+					0x01,                                           // Cell[i].Attrs.Underline
+					0x01,                                           // Cell[i].Attrs.Italic
+					0x01,                                           // Cell[i].Attrs.Blink
+					0x01,                                           // Cell[i].Attrs.Reverse
+					0x01,                                           // Cell[i].Attrs.Conceal
+					0x01,                                           // Cell[i].Attrs.Strike
+					0x01,                                           // Cell[i].Attrs.Font
+					0x01,                                           // Cell[i].Attrs.DWL
+					0x01,                                           // Cell[i].Attrs.DHL
+					0x01,                                           // Cell[i].Attrs.Small
+					0x01,                                           // Cell[i].Attrs.Baseline
+					0x04,                                           // Cell[i].FG.Type
+					0x08,                                           // Cell[i].FG.Idx
+					0x01,                                           // (padding)
+					0x01,                                           // (padding)
+					0x06,                                           // Cell[i].BG.Type
+					0x01,                                           // Cell[i].BG.Idx
+					0x01,                                           // (padding)
+					0x01,                                           // (padding)
+					0x02,                                           // Cell[i].Width
+					0x02, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, // len(string(Cell[i].Runes))
 					0x43, // string(Cell[i].Runes)
 
-					0x5C, 0x30, // Cell[i].Attrs.Bold
-					0x5C, 0x30, // Cell[i].Attrs.Underline
-					0x5C, 0x30, // Cell[i].Attrs.Italic
-					0x5C, 0x30, // Cell[i].Attrs.Blink
-					0x5C, 0x30, // Cell[i].Attrs.Reverse
-					0x5C, 0x30, // Cell[i].Attrs.Conceal
-					0x5C, 0x30, // Cell[i].Attrs.Strike
-					0x5C, 0x30, // Cell[i].Attrs.Font
-					0x5C, 0x30, // Cell[i].Attrs.DWL
-					0x5C, 0x30, // Cell[i].Attrs.DHL
-					0x5C, 0x30, // Cell[i].Attrs.Small
-					0x5C, 0x30, // Cell[i].Attrs.Baseline
-					0x03,       // Cell[i].FG.Type
-					0x07,       // Cell[i].FG.Idx
-					0x5C, 0x30, // (padding)
-					0x5C, 0x30, // (padding)
-					0x05,       // Cell[i].BG.Type
-					0x5C, 0x30, // Cell[i].BG.Idx
-					0x5C, 0x30, // (padding)
-					0x5C, 0x30, // (padding)
-					0x01,                                                                                           // Cell[i].Width
-					0x5C, 0x30, 0x5C, 0x30, 0x5C, 0x30, 0x5C, 0x30, 0x5C, 0x30, 0x5C, 0x30, 0x5C, 0x30, 0x5C, 0x30, // len(string(Cell[i].Runes))
+					0x01,                                           // Cell[i].Attrs.Bold
+					0x01,                                           // Cell[i].Attrs.Underline
+					0x01,                                           // Cell[i].Attrs.Italic
+					0x01,                                           // Cell[i].Attrs.Blink
+					0x01,                                           // Cell[i].Attrs.Reverse
+					0x01,                                           // Cell[i].Attrs.Conceal
+					0x01,                                           // Cell[i].Attrs.Strike
+					0x01,                                           // Cell[i].Attrs.Font
+					0x01,                                           // Cell[i].Attrs.DWL
+					0x01,                                           // Cell[i].Attrs.DHL
+					0x01,                                           // Cell[i].Attrs.Small
+					0x01,                                           // Cell[i].Attrs.Baseline
+					0x04,                                           // Cell[i].FG.Type
+					0x08,                                           // Cell[i].FG.Idx
+					0x01,                                           // (padding)
+					0x01,                                           // (padding)
+					0x06,                                           // Cell[i].BG.Type
+					0x01,                                           // Cell[i].BG.Idx
+					0x01,                                           // (padding)
+					0x01,                                           // (padding)
+					0x02,                                           // Cell[i].Width
+					0x02, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, // len(string(Cell[i].Runes))
+					0x44, // string(Cell[i].Runes)
+
+					0x01,                                           // Cell[i].Attrs.Bold
+					0x01,                                           // Cell[i].Attrs.Underline
+					0x01,                                           // Cell[i].Attrs.Italic
+					0x01,                                           // Cell[i].Attrs.Blink
+					0x01,                                           // Cell[i].Attrs.Reverse
+					0x01,                                           // Cell[i].Attrs.Conceal
+					0x01,                                           // Cell[i].Attrs.Strike
+					0x01,                                           // Cell[i].Attrs.Font
+					0x01,                                           // Cell[i].Attrs.DWL
+					0x01,                                           // Cell[i].Attrs.DHL
+					0x01,                                           // Cell[i].Attrs.Small
+					0x01,                                           // Cell[i].Attrs.Baseline
+					0x04,                                           // Cell[i].FG.Type
+					0x08,                                           // Cell[i].FG.Idx
+					0x01,                                           // (padding)
+					0x01,                                           // (padding)
+					0x06,                                           // Cell[i].BG.Type
+					0x01,                                           // Cell[i].BG.Idx
+					0x01,                                           // (padding)
+					0x01,                                           // (padding)
+					0x02,                                           // Cell[i].Width
+					0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, // len(string(Cell[i].Runes))
 				},
 			},
 			wantLog: []byte{},
