@@ -21,6 +21,7 @@ func encodeScreenShot(buf *bytes.Buffer, ss vterm.ScreenShot) {
 	encodeInt(buf, ss.CursorPos.Col)
 
 	rows, cols := ss.Size()
+	encodeInt(buf, rows)
 	encodeInt(buf, cols)
 	for row := 0; row < rows; row++ {
 		for col := 0; col < cols; col++ {
