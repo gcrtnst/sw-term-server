@@ -39,9 +39,17 @@ func NewTerm(cfg TermConfig) (*Term, error) {
 	// https://github.com/vim/vim/commit/8b89614e69b9b2330539d0482e44f4724053e780
 	vt.SetUTF8(true)
 
-	fg := vterm.NewColorIndexed(7)
-	bg := vterm.NewColorIndexed(0)
+	fg := vterm.NewColorRGB(0xC4, 0xC4, 0xC4)
+	bg := vterm.NewColorRGB(0x00, 0x00, 0x00)
 	vt.Screen().SetDefaultColor(fg, bg)
+	vt.Screen().SetPaletteColor(0, vterm.NewColorRGB(0x00, 0x00, 0x00))
+	vt.Screen().SetPaletteColor(1, vterm.NewColorRGB(0xC4, 0x40, 0x40))
+	vt.Screen().SetPaletteColor(2, vterm.NewColorRGB(0x40, 0xC4, 0x40))
+	vt.Screen().SetPaletteColor(3, vterm.NewColorRGB(0xC4, 0xC4, 0x40))
+	vt.Screen().SetPaletteColor(4, vterm.NewColorRGB(0x40, 0x40, 0xC4))
+	vt.Screen().SetPaletteColor(5, vterm.NewColorRGB(0xC4, 0x40, 0xC4))
+	vt.Screen().SetPaletteColor(6, vterm.NewColorRGB(0x40, 0xC4, 0xC4))
+	vt.Screen().SetPaletteColor(7, vterm.NewColorRGB(0xC4, 0xC4, 0xC4))
 
 	di := make(chan struct{})
 	vi := vt.Input()
@@ -115,8 +123,8 @@ func (t *Term) Keyboard(key Key, mod vterm.Modifier) bool {
 	return false
 }
 
-func (t *Term) Capture() vterm.ScreenShot {
-	return t.vt.Screen().Capture()
+func (t *Term) CaptureRGB() vterm.ScreenShot {
+	return t.vt.Screen().CaptureRGB()
 }
 
 func (t *Term) Close() error {

@@ -118,14 +118,12 @@ func TestTermSlotKeyboard(t *testing.T) {
 	}
 }
 
-func TestTermSlotCapture(t *testing.T) {
+func TestTermSlotCaptureRGB(t *testing.T) {
 	errDummy := errors.New("dummy error")
 	pid := os.Getpid()
 
-	fg := vterm.NewColorIndexed(7)
-	fg.Type |= vterm.ColorDefaultFG
-	bg := vterm.NewColorIndexed(0)
-	bg.Type |= vterm.ColorDefaultBG
+	fg := vterm.NewColorRGB(0xC4, 0xC4, 0xC4)
+	bg := vterm.NewColorRGB(0x00, 0x00, 0x00)
 
 	tt := []struct {
 		name               string
@@ -293,7 +291,7 @@ func TestTermSlotCapture(t *testing.T) {
 			}
 
 			mt.ErrOpen = tc.inMTErrOpen
-			gotSS, gotErr := slot.Capture()
+			gotSS, gotErr := slot.CaptureRGB()
 			gotMTOpenTerminal := mt.OpenTerminal
 
 			if slot.term != nil {

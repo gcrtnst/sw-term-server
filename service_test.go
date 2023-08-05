@@ -302,14 +302,12 @@ func TestScreenServiceServeAPI(t *testing.T) {
 					0x01,                                           // Cell[i].Attrs.DHL
 					0x01,                                           // Cell[i].Attrs.Small
 					0x01,                                           // Cell[i].Attrs.Baseline
-					0x04,                                           // Cell[i].FG.Type
-					0x08,                                           // Cell[i].FG.Idx
-					0x01,                                           // (padding)
-					0x01,                                           // (padding)
-					0x06,                                           // Cell[i].BG.Type
-					0x01,                                           // Cell[i].BG.Idx
-					0x01,                                           // (padding)
-					0x01,                                           // (padding)
+					0xC5,                                           // Cell[i].FG.Red
+					0xC5,                                           // Cell[i].FG.Green
+					0xC5,                                           // Cell[i].FG.Blue
+					0x01,                                           // Cell[i].BG.Red
+					0x01,                                           // Cell[i].BG.Green
+					0x01,                                           // Cell[i].BG.Blue
 					0x02,                                           // Cell[i].Width
 					0x02, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, // len(string(Cell[i].Runes))
 					0x42, // string(Cell[i].Runes)
@@ -326,14 +324,12 @@ func TestScreenServiceServeAPI(t *testing.T) {
 					0x01,                                           // Cell[i].Attrs.DHL
 					0x01,                                           // Cell[i].Attrs.Small
 					0x01,                                           // Cell[i].Attrs.Baseline
-					0x04,                                           // Cell[i].FG.Type
-					0x08,                                           // Cell[i].FG.Idx
-					0x01,                                           // (padding)
-					0x01,                                           // (padding)
-					0x06,                                           // Cell[i].BG.Type
-					0x01,                                           // Cell[i].BG.Idx
-					0x01,                                           // (padding)
-					0x01,                                           // (padding)
+					0xC5,                                           // Cell[i].FG.Red
+					0xC5,                                           // Cell[i].FG.Green
+					0xC5,                                           // Cell[i].FG.Blue
+					0x01,                                           // Cell[i].BG.Red
+					0x01,                                           // Cell[i].BG.Green
+					0x01,                                           // Cell[i].BG.Blue
 					0x02,                                           // Cell[i].Width
 					0x02, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, // len(string(Cell[i].Runes))
 					0x43, // string(Cell[i].Runes)
@@ -350,14 +346,12 @@ func TestScreenServiceServeAPI(t *testing.T) {
 					0x01,                                           // Cell[i].Attrs.DHL
 					0x01,                                           // Cell[i].Attrs.Small
 					0x01,                                           // Cell[i].Attrs.Baseline
-					0x04,                                           // Cell[i].FG.Type
-					0x08,                                           // Cell[i].FG.Idx
-					0x01,                                           // (padding)
-					0x01,                                           // (padding)
-					0x06,                                           // Cell[i].BG.Type
-					0x01,                                           // Cell[i].BG.Idx
-					0x01,                                           // (padding)
-					0x01,                                           // (padding)
+					0xC5,                                           // Cell[i].FG.Red
+					0xC5,                                           // Cell[i].FG.Green
+					0xC5,                                           // Cell[i].FG.Blue
+					0x01,                                           // Cell[i].BG.Red
+					0x01,                                           // Cell[i].BG.Green
+					0x01,                                           // Cell[i].BG.Blue
 					0x02,                                           // Cell[i].Width
 					0x02, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, // len(string(Cell[i].Runes))
 					0x44, // string(Cell[i].Runes)
@@ -374,14 +368,12 @@ func TestScreenServiceServeAPI(t *testing.T) {
 					0x01,                                           // Cell[i].Attrs.DHL
 					0x01,                                           // Cell[i].Attrs.Small
 					0x01,                                           // Cell[i].Attrs.Baseline
-					0x04,                                           // Cell[i].FG.Type
-					0x08,                                           // Cell[i].FG.Idx
-					0x01,                                           // (padding)
-					0x01,                                           // (padding)
-					0x06,                                           // Cell[i].BG.Type
-					0x01,                                           // Cell[i].BG.Idx
-					0x01,                                           // (padding)
-					0x01,                                           // (padding)
+					0xC5,                                           // Cell[i].FG.Red
+					0xC5,                                           // Cell[i].FG.Green
+					0xC5,                                           // Cell[i].FG.Blue
+					0x01,                                           // Cell[i].BG.Red
+					0x01,                                           // Cell[i].BG.Green
+					0x01,                                           // Cell[i].BG.Blue
 					0x02,                                           // Cell[i].Width
 					0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, // len(string(Cell[i].Runes))
 				},

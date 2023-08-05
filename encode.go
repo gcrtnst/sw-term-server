@@ -51,13 +51,8 @@ func encodeScreenShot(buf *bytes.Buffer, ss vterm.ScreenShot) {
 }
 
 func encodeColor(buf *bytes.Buffer, col vterm.Color) {
-	_ = buf.WriteByte(byte(col.Type))
-
 	var b [3]byte
-	switch {
-	case col.IsIndexed():
-		b[0] = col.Idx
-	case col.IsRGB():
+	if col.IsRGB() {
 		b[0] = col.Red
 		b[1] = col.Green
 		b[2] = col.Blue

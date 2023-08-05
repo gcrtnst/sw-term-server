@@ -86,6 +86,130 @@ func TestScreenSetAltScreen(t *testing.T) {
 	}
 }
 
+func TestScreenSetDefaultColor(t *testing.T) {
+	inFG := NewColorRGB(1, 2, 3)
+	inBG := NewColorRGB(4, 5, 6)
+	wantFG, wantBG := inFG, inBG
+	wantFG.Type |= ColorDefaultFG
+	wantBG.Type |= ColorDefaultBG
+
+	vt := New(30, 120)
+	_ = vt.Output().Close()
+	scr := vt.Screen()
+	scr.SetDefaultColor(inFG, inBG)
+	cell, _ := scr.Cell(Pos{Row: 0, Col: 0})
+	if !cell.FG.Equal(wantFG) {
+		t.Errorf("fg: expected %#v, got %#v", wantFG, cell.FG)
+	}
+	if !cell.BG.Equal(wantBG) {
+		t.Errorf("bg: expected %#v, got %#v", wantBG, cell.BG)
+	}
+}
+
+func TestScreenSetPaletteColor(t *testing.T) {
+	vt := New(30, 120)
+	_ = vt.Output().Close()
+
+	scr := vt.Screen()
+	scr.SetPaletteColor(0, NewColorRGB(0, 0, 0))
+	scr.SetPaletteColor(1, NewColorRGB(1, 1, 1))
+	scr.SetPaletteColor(2, NewColorRGB(2, 2, 2))
+	scr.SetPaletteColor(3, NewColorRGB(3, 3, 3))
+	scr.SetPaletteColor(4, NewColorRGB(4, 4, 4))
+	scr.SetPaletteColor(5, NewColorRGB(5, 5, 5))
+	scr.SetPaletteColor(6, NewColorRGB(6, 6, 6))
+	scr.SetPaletteColor(7, NewColorRGB(7, 7, 7))
+	scr.SetPaletteColor(8, NewColorRGB(8, 8, 8))
+	scr.SetPaletteColor(9, NewColorRGB(9, 9, 9))
+	scr.SetPaletteColor(10, NewColorRGB(10, 10, 10))
+	scr.SetPaletteColor(11, NewColorRGB(11, 11, 11))
+	scr.SetPaletteColor(12, NewColorRGB(12, 12, 12))
+	scr.SetPaletteColor(13, NewColorRGB(13, 13, 13))
+	scr.SetPaletteColor(14, NewColorRGB(14, 14, 14))
+	scr.SetPaletteColor(15, NewColorRGB(15, 15, 15))
+
+	tt := []struct {
+		inIdx   uint8
+		wantCol Color
+	}{
+		{
+			inIdx:   0,
+			wantCol: NewColorRGB(0, 0, 0),
+		},
+		{
+			inIdx:   1,
+			wantCol: NewColorRGB(1, 1, 1),
+		},
+		{
+			inIdx:   2,
+			wantCol: NewColorRGB(2, 2, 2),
+		},
+		{
+			inIdx:   3,
+			wantCol: NewColorRGB(3, 3, 3),
+		},
+		{
+			inIdx:   4,
+			wantCol: NewColorRGB(4, 4, 4),
+		},
+		{
+			inIdx:   5,
+			wantCol: NewColorRGB(5, 5, 5),
+		},
+		{
+			inIdx:   6,
+			wantCol: NewColorRGB(6, 6, 6),
+		},
+		{
+			inIdx:   7,
+			wantCol: NewColorRGB(7, 7, 7),
+		},
+		{
+			inIdx:   8,
+			wantCol: NewColorRGB(8, 8, 8),
+		},
+		{
+			inIdx:   9,
+			wantCol: NewColorRGB(9, 9, 9),
+		},
+		{
+			inIdx:   10,
+			wantCol: NewColorRGB(10, 10, 10),
+		},
+		{
+			inIdx:   11,
+			wantCol: NewColorRGB(11, 11, 11),
+		},
+		{
+			inIdx:   12,
+			wantCol: NewColorRGB(12, 12, 12),
+		},
+		{
+			inIdx:   13,
+			wantCol: NewColorRGB(13, 13, 13),
+		},
+		{
+			inIdx:   14,
+			wantCol: NewColorRGB(14, 14, 14),
+		},
+		{
+			inIdx:   15,
+			wantCol: NewColorRGB(15, 15, 15),
+		},
+	}
+
+	for _, tc := range tt {
+		tc := tc
+		name := fmt.Sprintf("No%d", tc.inIdx)
+		t.Run(name, func(t *testing.T) {
+			gotCol := scr.ConvertColorToRGB(NewColorIndexed(tc.inIdx))
+			if !gotCol.Equal(tc.wantCol) {
+				t.Errorf("expected %#v, got %#v", tc.wantCol, gotCol)
+			}
+		})
+	}
+}
+
 func TestScreenCapture(t *testing.T) {
 	fg := NewColorIndexed(7)
 	fg.Type |= ColorDefaultFG
@@ -121,6 +245,62 @@ func TestScreenCapture(t *testing.T) {
 		CursorVisible: true,
 		CursorBlink:   false,
 		CursorShape:   CursorShapeBarLeft,
+	}
+
+	if !reflect.DeepEqual(got, want) {
+		t.Errorf("expected %#v, got %#v", want, got)
+	}
+}
+
+func TestScreenCaptureRGB(t *testing.T) {
+	defaultFG := NewColorRGB(0, 0, 0)
+	defaultBG := NewColorRGB(224, 224, 224)
+
+	vt := New(4, 4)
+	_ = vt.Output().Close()
+	vt.Screen().SetDefaultColor(defaultFG, defaultBG)
+	_, _ = vt.Input().Write([]byte("\x1B[30m0\x1B[0m"))
+	_, _ = vt.Input().Write([]byte("\x1B[31m1\x1B[0m"))
+	_, _ = vt.Input().Write([]byte("\x1B[32m2\x1B[0m"))
+	_, _ = vt.Input().Write([]byte("\x1B[33m3\x1B[0m"))
+	_, _ = vt.Input().Write([]byte("\x1B[34m4\x1B[0m"))
+	_, _ = vt.Input().Write([]byte("\x1B[35m5\x1B[0m"))
+	_, _ = vt.Input().Write([]byte("\x1B[36m6\x1B[0m"))
+	_, _ = vt.Input().Write([]byte("\x1B[37m7\x1B[0m"))
+	_, _ = vt.Input().Write([]byte("\x1B[40m0\x1B[0m"))
+	_, _ = vt.Input().Write([]byte("\x1B[41m1\x1B[0m"))
+	_, _ = vt.Input().Write([]byte("\x1B[42m2\x1B[0m"))
+	_, _ = vt.Input().Write([]byte("\x1B[43m3\x1B[0m"))
+	_, _ = vt.Input().Write([]byte("\x1B[44m4\x1B[0m"))
+	_, _ = vt.Input().Write([]byte("\x1B[45m5\x1B[0m"))
+	_, _ = vt.Input().Write([]byte("\x1B[46m6\x1B[0m"))
+	_, _ = vt.Input().Write([]byte("\x1B[47m7\x1B[0m"))
+	got := vt.Screen().CaptureRGB()
+
+	want := ScreenShot{
+		Stride: 4,
+		Cell: []Cell{
+			{Runes: []rune("0"), Width: 1, FG: NewColorRGB(0, 0, 0), BG: defaultBG},
+			{Runes: []rune("1"), Width: 1, FG: NewColorRGB(224, 0, 0), BG: defaultBG},
+			{Runes: []rune("2"), Width: 1, FG: NewColorRGB(0, 224, 0), BG: defaultBG},
+			{Runes: []rune("3"), Width: 1, FG: NewColorRGB(224, 224, 0), BG: defaultBG},
+			{Runes: []rune("4"), Width: 1, FG: NewColorRGB(0, 0, 224), BG: defaultBG},
+			{Runes: []rune("5"), Width: 1, FG: NewColorRGB(224, 0, 224), BG: defaultBG},
+			{Runes: []rune("6"), Width: 1, FG: NewColorRGB(0, 224, 224), BG: defaultBG},
+			{Runes: []rune("7"), Width: 1, FG: NewColorRGB(224, 224, 224), BG: defaultBG},
+			{Runes: []rune("0"), Width: 1, FG: defaultFG, BG: NewColorRGB(0, 0, 0)},
+			{Runes: []rune("1"), Width: 1, FG: defaultFG, BG: NewColorRGB(224, 0, 0)},
+			{Runes: []rune("2"), Width: 1, FG: defaultFG, BG: NewColorRGB(0, 224, 0)},
+			{Runes: []rune("3"), Width: 1, FG: defaultFG, BG: NewColorRGB(224, 224, 0)},
+			{Runes: []rune("4"), Width: 1, FG: defaultFG, BG: NewColorRGB(0, 0, 224)},
+			{Runes: []rune("5"), Width: 1, FG: defaultFG, BG: NewColorRGB(224, 0, 224)},
+			{Runes: []rune("6"), Width: 1, FG: defaultFG, BG: NewColorRGB(0, 224, 224)},
+			{Runes: []rune("7"), Width: 1, FG: defaultFG, BG: NewColorRGB(224, 224, 224)},
+		},
+		CursorPos:     Pos{Row: 3, Col: 3},
+		CursorVisible: true,
+		CursorBlink:   true,
+		CursorShape:   CursorShapeBlock,
 	}
 
 	if !reflect.DeepEqual(got, want) {
@@ -572,26 +752,6 @@ func TestScreenCell(t *testing.T) {
 	}
 }
 
-func TestScreenSetDefaultColor(t *testing.T) {
-	inFG := NewColorRGB(1, 2, 3)
-	inBG := NewColorRGB(4, 5, 6)
-	wantFG, wantBG := inFG, inBG
-	wantFG.Type |= ColorDefaultFG
-	wantBG.Type |= ColorDefaultBG
-
-	vt := New(30, 120)
-	_ = vt.Output().Close()
-	scr := vt.Screen()
-	scr.SetDefaultColor(inFG, inBG)
-	cell, _ := scr.Cell(Pos{Row: 0, Col: 0})
-	if !cell.FG.Equal(wantFG) {
-		t.Errorf("fg: expected %#v, got %#v", wantFG, cell.FG)
-	}
-	if !cell.BG.Equal(wantBG) {
-		t.Errorf("bg: expected %#v, got %#v", wantBG, cell.BG)
-	}
-}
-
 func TestScreenCursorPos(t *testing.T) {
 	vt := New(30, 120)
 	_ = vt.Output().Close()
@@ -676,6 +836,69 @@ func TestScreenCursorShape(t *testing.T) {
 	got = scr.CursorShape()
 	if got != want {
 		t.Errorf("set2: expected %d, got %d", want, got)
+	}
+}
+
+func TestScreenConvertColorToRGB(t *testing.T) {
+	tt := []struct {
+		name string
+		in   Color
+		want Color
+	}{
+		{
+			name: "Idx0",
+			in:   NewColorIndexed(0),
+			want: NewColorRGB(0, 0, 0),
+		},
+		{
+			name: "Idx1",
+			in:   NewColorIndexed(1),
+			want: NewColorRGB(224, 0, 0),
+		},
+		{
+			name: "Idx2",
+			in:   NewColorIndexed(2),
+			want: NewColorRGB(0, 224, 0),
+		},
+		{
+			name: "Idx3",
+			in:   NewColorIndexed(3),
+			want: NewColorRGB(224, 224, 0),
+		},
+		{
+			name: "Idx4",
+			in:   NewColorIndexed(4),
+			want: NewColorRGB(0, 0, 224),
+		},
+		{
+			name: "Idx5",
+			in:   NewColorIndexed(5),
+			want: NewColorRGB(224, 0, 224),
+		},
+		{
+			name: "Idx6",
+			in:   NewColorIndexed(6),
+			want: NewColorRGB(0, 224, 224),
+		},
+		{
+			name: "Idx7",
+			in:   NewColorIndexed(7),
+			want: NewColorRGB(224, 224, 224),
+		},
+	}
+
+	vt := New(30, 120)
+	_ = vt.Output().Close()
+	scr := vt.Screen()
+
+	for _, tc := range tt {
+		tc := tc
+		t.Run(tc.name, func(t *testing.T) {
+			got := scr.ConvertColorToRGB(tc.in)
+			if !got.Equal(tc.want) {
+				t.Errorf("expected %#v, got %#v", tc.want, got)
+			}
+		})
 	}
 }
 

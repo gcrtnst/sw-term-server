@@ -36,7 +36,7 @@ func (s *TermSlot) Keyboard(key Key, mod vterm.Modifier) error {
 	return nil
 }
 
-func (s *TermSlot) Capture() (vterm.ScreenShot, error) {
+func (s *TermSlot) CaptureRGB() (vterm.ScreenShot, error) {
 	s.mu.Lock()
 	defer s.mu.Unlock()
 
@@ -45,7 +45,7 @@ func (s *TermSlot) Capture() (vterm.ScreenShot, error) {
 		return vterm.ScreenShot{}, err
 	}
 
-	ss := s.term.Capture()
+	ss := s.term.CaptureRGB()
 	return ss, nil
 }
 

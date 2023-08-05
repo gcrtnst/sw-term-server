@@ -98,29 +98,29 @@ func TestEncodeScreenShot(t *testing.T) {
 						Runes: []rune("A"),
 						Width: 1,
 						Attrs: vterm.CellAttrs{},
-						FG:    vterm.NewColorIndexed(7),
-						BG:    vterm.NewColorIndexed(0),
+						FG:    vterm.NewColorRGB(0xFF, 0xFF, 0xFF),
+						BG:    vterm.NewColorRGB(0x00, 0x00, 0x00),
 					},
 					{
 						Runes: []rune{0x0041, 0x030A},
 						Width: 1,
 						Attrs: vterm.CellAttrs{},
-						FG:    vterm.NewColorIndexed(7),
-						BG:    vterm.NewColorIndexed(0),
+						FG:    vterm.NewColorRGB(0xFF, 0xFF, 0xFF),
+						BG:    vterm.NewColorRGB(0x00, 0x00, 0x00),
 					},
 					{
 						Runes: []rune("あ"),
 						Width: 2,
 						Attrs: vterm.CellAttrs{},
-						FG:    vterm.NewColorIndexed(7),
-						BG:    vterm.NewColorIndexed(0),
+						FG:    vterm.NewColorRGB(0xFF, 0xFF, 0xFF),
+						BG:    vterm.NewColorRGB(0x00, 0x00, 0x00),
 					},
 					{
 						Runes: []rune{},
 						Width: 1,
 						Attrs: vterm.CellAttrs{},
-						FG:    vterm.NewColorIndexed(7),
-						BG:    vterm.NewColorIndexed(0),
+						FG:    vterm.NewColorRGB(0xFF, 0xFF, 0xFF),
+						BG:    vterm.NewColorRGB(0x00, 0x00, 0x00),
 					},
 					{
 						Runes: []rune("A"),
@@ -128,8 +128,8 @@ func TestEncodeScreenShot(t *testing.T) {
 						Attrs: vterm.CellAttrs{
 							Bold: true,
 						},
-						FG: vterm.NewColorIndexed(7),
-						BG: vterm.NewColorIndexed(0),
+						FG: vterm.NewColorRGB(0xFF, 0xFF, 0xFF),
+						BG: vterm.NewColorRGB(0x00, 0x00, 0x00),
 					},
 					{
 						Runes: []rune("A"),
@@ -137,8 +137,8 @@ func TestEncodeScreenShot(t *testing.T) {
 						Attrs: vterm.CellAttrs{
 							Underline: vterm.UnderlineCurly,
 						},
-						FG: vterm.NewColorIndexed(7),
-						BG: vterm.NewColorIndexed(0),
+						FG: vterm.NewColorRGB(0xFF, 0xFF, 0xFF),
+						BG: vterm.NewColorRGB(0x00, 0x00, 0x00),
 					},
 					{
 						Runes: []rune("A"),
@@ -146,8 +146,8 @@ func TestEncodeScreenShot(t *testing.T) {
 						Attrs: vterm.CellAttrs{
 							Italic: true,
 						},
-						FG: vterm.NewColorIndexed(7),
-						BG: vterm.NewColorIndexed(0),
+						FG: vterm.NewColorRGB(0xFF, 0xFF, 0xFF),
+						BG: vterm.NewColorRGB(0x00, 0x00, 0x00),
 					},
 					{
 						Runes: []rune("A"),
@@ -155,8 +155,8 @@ func TestEncodeScreenShot(t *testing.T) {
 						Attrs: vterm.CellAttrs{
 							Blink: true,
 						},
-						FG: vterm.NewColorIndexed(7),
-						BG: vterm.NewColorIndexed(0),
+						FG: vterm.NewColorRGB(0xFF, 0xFF, 0xFF),
+						BG: vterm.NewColorRGB(0x00, 0x00, 0x00),
 					},
 					{
 						Runes: []rune("A"),
@@ -164,8 +164,8 @@ func TestEncodeScreenShot(t *testing.T) {
 						Attrs: vterm.CellAttrs{
 							Reverse: true,
 						},
-						FG: vterm.NewColorIndexed(7),
-						BG: vterm.NewColorIndexed(0),
+						FG: vterm.NewColorRGB(0xFF, 0xFF, 0xFF),
+						BG: vterm.NewColorRGB(0x00, 0x00, 0x00),
 					},
 					{
 						Runes: []rune("A"),
@@ -173,8 +173,8 @@ func TestEncodeScreenShot(t *testing.T) {
 						Attrs: vterm.CellAttrs{
 							Conceal: true,
 						},
-						FG: vterm.NewColorIndexed(7),
-						BG: vterm.NewColorIndexed(0),
+						FG: vterm.NewColorRGB(0xFF, 0xFF, 0xFF),
+						BG: vterm.NewColorRGB(0x00, 0x00, 0x00),
 					},
 					{
 						Runes: []rune("A"),
@@ -182,8 +182,8 @@ func TestEncodeScreenShot(t *testing.T) {
 						Attrs: vterm.CellAttrs{
 							Strike: true,
 						},
-						FG: vterm.NewColorIndexed(7),
-						BG: vterm.NewColorIndexed(0),
+						FG: vterm.NewColorRGB(0xFF, 0xFF, 0xFF),
+						BG: vterm.NewColorRGB(0x00, 0x00, 0x00),
 					},
 					{
 						Runes: []rune("A"),
@@ -191,8 +191,8 @@ func TestEncodeScreenShot(t *testing.T) {
 						Attrs: vterm.CellAttrs{
 							Font: 9,
 						},
-						FG: vterm.NewColorIndexed(7),
-						BG: vterm.NewColorIndexed(0),
+						FG: vterm.NewColorRGB(0xFF, 0xFF, 0xFF),
+						BG: vterm.NewColorRGB(0x00, 0x00, 0x00),
 					},
 					{
 						Runes: []rune("A"),
@@ -200,8 +200,8 @@ func TestEncodeScreenShot(t *testing.T) {
 						Attrs: vterm.CellAttrs{
 							DWL: true,
 						},
-						FG: vterm.NewColorIndexed(7),
-						BG: vterm.NewColorIndexed(0),
+						FG: vterm.NewColorRGB(0xFF, 0xFF, 0xFF),
+						BG: vterm.NewColorRGB(0x00, 0x00, 0x00),
 					},
 					{
 						Runes: []rune("A"),
@@ -209,8 +209,8 @@ func TestEncodeScreenShot(t *testing.T) {
 						Attrs: vterm.CellAttrs{
 							DHL: vterm.DHLBottom,
 						},
-						FG: vterm.NewColorIndexed(7),
-						BG: vterm.NewColorIndexed(0),
+						FG: vterm.NewColorRGB(0xFF, 0xFF, 0xFF),
+						BG: vterm.NewColorRGB(0x00, 0x00, 0x00),
 					},
 					{
 						Runes: []rune("A"),
@@ -218,8 +218,8 @@ func TestEncodeScreenShot(t *testing.T) {
 						Attrs: vterm.CellAttrs{
 							Small: true,
 						},
-						FG: vterm.NewColorIndexed(7),
-						BG: vterm.NewColorIndexed(0),
+						FG: vterm.NewColorRGB(0xFF, 0xFF, 0xFF),
+						BG: vterm.NewColorRGB(0x00, 0x00, 0x00),
 					},
 					{
 						Runes: []rune("A"),
@@ -227,8 +227,8 @@ func TestEncodeScreenShot(t *testing.T) {
 						Attrs: vterm.CellAttrs{
 							Baseline: vterm.BaselineLower,
 						},
-						FG: vterm.NewColorIndexed(7),
-						BG: vterm.NewColorIndexed(0),
+						FG: vterm.NewColorRGB(0xFF, 0xFF, 0xFF),
+						BG: vterm.NewColorRGB(0x00, 0x00, 0x00),
 					},
 					{
 						Runes: []rune("A"),
@@ -236,19 +236,6 @@ func TestEncodeScreenShot(t *testing.T) {
 						Attrs: vterm.CellAttrs{},
 						FG:    vterm.NewColorRGB(0, 1, 2),
 						BG:    vterm.NewColorRGB(253, 254, 255),
-					},
-					{
-						Runes: []rune("A"),
-						Width: 1,
-						Attrs: vterm.CellAttrs{},
-						FG: vterm.Color{
-							Type: vterm.ColorIndexed | vterm.ColorDefaultFG,
-							Idx:  7,
-						},
-						BG: vterm.Color{
-							Type: vterm.ColorIndexed | vterm.ColorDefaultBG,
-							Idx:  0,
-						},
 					},
 					{
 						Runes: []rune("A"),
@@ -271,8 +258,15 @@ func TestEncodeScreenShot(t *testing.T) {
 						Runes: []rune("A"),
 						Width: 1,
 						Attrs: vterm.CellAttrs{},
-						FG:    vterm.NewColorIndexed(7),
-						BG:    vterm.NewColorIndexed(0),
+						FG: vterm.NewColorIndexed(7),
+						BG: vterm.NewColorIndexed(7),
+					},
+					{
+						Runes: []rune("A"),
+						Width: 1,
+						Attrs: vterm.CellAttrs{},
+						FG:    vterm.NewColorRGB(0xFF, 0xFF, 0xFF),
+						BG:    vterm.NewColorRGB(0x00, 0x00, 0x00),
 					},
 				},
 			},
@@ -297,14 +291,12 @@ func TestEncodeScreenShot(t *testing.T) {
 				0x00,                                           // Cell[i].Attrs.DHL
 				0x00,                                           // Cell[i].Attrs.Small
 				0x00,                                           // Cell[i].Attrs.Baseline
-				0x01,                                           // Cell[i].FG.Type
-				0x07,                                           // Cell[i].FG.Idx
-				0x00,                                           // padding
-				0x00,                                           // padding
-				0x01,                                           // Cell[i].BG.Type
-				0x00,                                           // Cell[i].BG.Idx
-				0x00,                                           // padding
-				0x00,                                           // padding
+				0xFF,                                           // Cell[i].FG.Red
+				0xFF,                                           // Cell[i].FG.Green
+				0xFF,                                           // Cell[i].FG.Blue
+				0x00,                                           // Cell[i].BG.Red
+				0x00,                                           // Cell[i].BG.Green
+				0x00,                                           // Cell[i].BG.Blue
 				0x01,                                           // Cell[i].Width
 				0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, // len(Cell[i].Rune)
 				'A', // string(Cell[i].Rune)
@@ -321,14 +313,12 @@ func TestEncodeScreenShot(t *testing.T) {
 				0x00,                                           // Cell[i].Attrs.DHL
 				0x00,                                           // Cell[i].Attrs.Small
 				0x00,                                           // Cell[i].Attrs.Baseline
-				0x01,                                           // Cell[i].FG.Type
-				0x07,                                           // Cell[i].FG.Idx
-				0x00,                                           // padding
-				0x00,                                           // padding
-				0x01,                                           // Cell[i].BG.Type
-				0x00,                                           // Cell[i].BG.Idx
-				0x00,                                           // padding
-				0x00,                                           // padding
+				0xFF,                                           // Cell[i].FG.Red
+				0xFF,                                           // Cell[i].FG.Green
+				0xFF,                                           // Cell[i].FG.Blue
+				0x00,                                           // Cell[i].BG.Red
+				0x00,                                           // Cell[i].BG.Green
+				0x00,                                           // Cell[i].BG.Blue
 				0x01,                                           // Cell[i].Width
 				0x03, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, // len(Cell[i].Rune)
 				0x41, 0xCC, 0x8A, // string(Cell[i].Rune)
@@ -345,14 +335,12 @@ func TestEncodeScreenShot(t *testing.T) {
 				0x00,                                           // Cell[i].Attrs.DHL
 				0x00,                                           // Cell[i].Attrs.Small
 				0x00,                                           // Cell[i].Attrs.Baseline
-				0x01,                                           // Cell[i].FG.Type
-				0x07,                                           // Cell[i].FG.Idx
-				0x00,                                           // padding
-				0x00,                                           // padding
-				0x01,                                           // Cell[i].BG.Type
-				0x00,                                           // Cell[i].BG.Idx
-				0x00,                                           // padding
-				0x00,                                           // padding
+				0xFF,                                           // Cell[i].FG.Red
+				0xFF,                                           // Cell[i].FG.Green
+				0xFF,                                           // Cell[i].FG.Blue
+				0x00,                                           // Cell[i].BG.Red
+				0x00,                                           // Cell[i].BG.Green
+				0x00,                                           // Cell[i].BG.Blue
 				0x02,                                           // Cell[i].Width
 				0x03, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, // len(Cell[i].Rune)
 				0xE3, 0x81, 0x82, // string(Cell[i].Rune)
@@ -369,14 +357,12 @@ func TestEncodeScreenShot(t *testing.T) {
 				0x00,                                           // Cell[i].Attrs.DHL
 				0x00,                                           // Cell[i].Attrs.Small
 				0x00,                                           // Cell[i].Attrs.Baseline
-				0x01,                                           // Cell[i].FG.Type
-				0x07,                                           // Cell[i].FG.Idx
-				0x00,                                           // padding
-				0x00,                                           // padding
-				0x01,                                           // Cell[i].BG.Type
-				0x00,                                           // Cell[i].BG.Idx
-				0x00,                                           // padding
-				0x00,                                           // padding
+				0xFF,                                           // Cell[i].FG.Red
+				0xFF,                                           // Cell[i].FG.Green
+				0xFF,                                           // Cell[i].FG.Blue
+				0x00,                                           // Cell[i].BG.Red
+				0x00,                                           // Cell[i].BG.Green
+				0x00,                                           // Cell[i].BG.Blue
 				0x01,                                           // Cell[i].Width
 				0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, // len(Cell[i].Rune)
 
@@ -392,14 +378,12 @@ func TestEncodeScreenShot(t *testing.T) {
 				0x00,                                           // Cell[i].Attrs.DHL
 				0x00,                                           // Cell[i].Attrs.Small
 				0x00,                                           // Cell[i].Attrs.Baseline
-				0x01,                                           // Cell[i].FG.Type
-				0x07,                                           // Cell[i].FG.Idx
-				0x00,                                           // padding
-				0x00,                                           // padding
-				0x01,                                           // Cell[i].BG.Type
-				0x00,                                           // Cell[i].BG.Idx
-				0x00,                                           // padding
-				0x00,                                           // padding
+				0xFF,                                           // Cell[i].FG.Red
+				0xFF,                                           // Cell[i].FG.Green
+				0xFF,                                           // Cell[i].FG.Blue
+				0x00,                                           // Cell[i].BG.Red
+				0x00,                                           // Cell[i].BG.Green
+				0x00,                                           // Cell[i].BG.Blue
 				0x01,                                           // Cell[i].Width
 				0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, // len(Cell[i].Rune)
 				'A', // string(Cell[i].Rune)
@@ -416,14 +400,12 @@ func TestEncodeScreenShot(t *testing.T) {
 				0x00,                                           // Cell[i].Attrs.DHL
 				0x00,                                           // Cell[i].Attrs.Small
 				0x00,                                           // Cell[i].Attrs.Baseline
-				0x01,                                           // Cell[i].FG.Type
-				0x07,                                           // Cell[i].FG.Idx
-				0x00,                                           // padding
-				0x00,                                           // padding
-				0x01,                                           // Cell[i].BG.Type
-				0x00,                                           // Cell[i].BG.Idx
-				0x00,                                           // padding
-				0x00,                                           // padding
+				0xFF,                                           // Cell[i].FG.Red
+				0xFF,                                           // Cell[i].FG.Green
+				0xFF,                                           // Cell[i].FG.Blue
+				0x00,                                           // Cell[i].BG.Red
+				0x00,                                           // Cell[i].BG.Green
+				0x00,                                           // Cell[i].BG.Blue
 				0x01,                                           // Cell[i].Width
 				0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, // len(Cell[i].Rune)
 				'A', // string(Cell[i].Rune)
@@ -440,14 +422,12 @@ func TestEncodeScreenShot(t *testing.T) {
 				0x00,                                           // Cell[i].Attrs.DHL
 				0x00,                                           // Cell[i].Attrs.Small
 				0x00,                                           // Cell[i].Attrs.Baseline
-				0x01,                                           // Cell[i].FG.Type
-				0x07,                                           // Cell[i].FG.Idx
-				0x00,                                           // padding
-				0x00,                                           // padding
-				0x01,                                           // Cell[i].BG.Type
-				0x00,                                           // Cell[i].BG.Idx
-				0x00,                                           // padding
-				0x00,                                           // padding
+				0xFF,                                           // Cell[i].FG.Red
+				0xFF,                                           // Cell[i].FG.Green
+				0xFF,                                           // Cell[i].FG.Blue
+				0x00,                                           // Cell[i].BG.Red
+				0x00,                                           // Cell[i].BG.Green
+				0x00,                                           // Cell[i].BG.Blue
 				0x01,                                           // Cell[i].Width
 				0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, // len(Cell[i].Rune)
 				'A', // string(Cell[i].Rune)
@@ -464,14 +444,12 @@ func TestEncodeScreenShot(t *testing.T) {
 				0x00,                                           // Cell[i].Attrs.DHL
 				0x00,                                           // Cell[i].Attrs.Small
 				0x00,                                           // Cell[i].Attrs.Baseline
-				0x01,                                           // Cell[i].FG.Type
-				0x07,                                           // Cell[i].FG.Idx
-				0x00,                                           // padding
-				0x00,                                           // padding
-				0x01,                                           // Cell[i].BG.Type
-				0x00,                                           // Cell[i].BG.Idx
-				0x00,                                           // padding
-				0x00,                                           // padding
+				0xFF,                                           // Cell[i].FG.Red
+				0xFF,                                           // Cell[i].FG.Green
+				0xFF,                                           // Cell[i].FG.Blue
+				0x00,                                           // Cell[i].BG.Red
+				0x00,                                           // Cell[i].BG.Green
+				0x00,                                           // Cell[i].BG.Blue
 				0x01,                                           // Cell[i].Width
 				0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, // len(Cell[i].Rune)
 				'A', // string(Cell[i].Rune)
@@ -488,14 +466,12 @@ func TestEncodeScreenShot(t *testing.T) {
 				0x00,                                           // Cell[i].Attrs.DHL
 				0x00,                                           // Cell[i].Attrs.Small
 				0x00,                                           // Cell[i].Attrs.Baseline
-				0x01,                                           // Cell[i].FG.Type
-				0x07,                                           // Cell[i].FG.Idx
-				0x00,                                           // padding
-				0x00,                                           // padding
-				0x01,                                           // Cell[i].BG.Type
-				0x00,                                           // Cell[i].BG.Idx
-				0x00,                                           // padding
-				0x00,                                           // padding
+				0xFF,                                           // Cell[i].FG.Red
+				0xFF,                                           // Cell[i].FG.Green
+				0xFF,                                           // Cell[i].FG.Blue
+				0x00,                                           // Cell[i].BG.Red
+				0x00,                                           // Cell[i].BG.Green
+				0x00,                                           // Cell[i].BG.Blue
 				0x01,                                           // Cell[i].Width
 				0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, // len(Cell[i].Rune)
 				'A', // string(Cell[i].Rune)
@@ -512,14 +488,12 @@ func TestEncodeScreenShot(t *testing.T) {
 				0x00,                                           // Cell[i].Attrs.DHL
 				0x00,                                           // Cell[i].Attrs.Small
 				0x00,                                           // Cell[i].Attrs.Baseline
-				0x01,                                           // Cell[i].FG.Type
-				0x07,                                           // Cell[i].FG.Idx
-				0x00,                                           // padding
-				0x00,                                           // padding
-				0x01,                                           // Cell[i].BG.Type
-				0x00,                                           // Cell[i].BG.Idx
-				0x00,                                           // padding
-				0x00,                                           // padding
+				0xFF,                                           // Cell[i].FG.Red
+				0xFF,                                           // Cell[i].FG.Green
+				0xFF,                                           // Cell[i].FG.Blue
+				0x00,                                           // Cell[i].BG.Red
+				0x00,                                           // Cell[i].BG.Green
+				0x00,                                           // Cell[i].BG.Blue
 				0x01,                                           // Cell[i].Width
 				0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, // len(Cell[i].Rune)
 				'A', // string(Cell[i].Rune)
@@ -536,14 +510,12 @@ func TestEncodeScreenShot(t *testing.T) {
 				0x00,                                           // Cell[i].Attrs.DHL
 				0x00,                                           // Cell[i].Attrs.Small
 				0x00,                                           // Cell[i].Attrs.Baseline
-				0x01,                                           // Cell[i].FG.Type
-				0x07,                                           // Cell[i].FG.Idx
-				0x00,                                           // padding
-				0x00,                                           // padding
-				0x01,                                           // Cell[i].BG.Type
-				0x00,                                           // Cell[i].BG.Idx
-				0x00,                                           // padding
-				0x00,                                           // padding
+				0xFF,                                           // Cell[i].FG.Red
+				0xFF,                                           // Cell[i].FG.Green
+				0xFF,                                           // Cell[i].FG.Blue
+				0x00,                                           // Cell[i].BG.Red
+				0x00,                                           // Cell[i].BG.Green
+				0x00,                                           // Cell[i].BG.Blue
 				0x01,                                           // Cell[i].Width
 				0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, // len(Cell[i].Rune)
 				'A', // string(Cell[i].Rune)
@@ -560,14 +532,12 @@ func TestEncodeScreenShot(t *testing.T) {
 				0x00,                                           // Cell[i].Attrs.DHL
 				0x00,                                           // Cell[i].Attrs.Small
 				0x00,                                           // Cell[i].Attrs.Baseline
-				0x01,                                           // Cell[i].FG.Type
-				0x07,                                           // Cell[i].FG.Idx
-				0x00,                                           // padding
-				0x00,                                           // padding
-				0x01,                                           // Cell[i].BG.Type
-				0x00,                                           // Cell[i].BG.Idx
-				0x00,                                           // padding
-				0x00,                                           // padding
+				0xFF,                                           // Cell[i].FG.Red
+				0xFF,                                           // Cell[i].FG.Green
+				0xFF,                                           // Cell[i].FG.Blue
+				0x00,                                           // Cell[i].BG.Red
+				0x00,                                           // Cell[i].BG.Green
+				0x00,                                           // Cell[i].BG.Blue
 				0x01,                                           // Cell[i].Width
 				0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, // len(Cell[i].Rune)
 				'A', // string(Cell[i].Rune)
@@ -584,14 +554,12 @@ func TestEncodeScreenShot(t *testing.T) {
 				0x00,                                           // Cell[i].Attrs.DHL
 				0x00,                                           // Cell[i].Attrs.Small
 				0x00,                                           // Cell[i].Attrs.Baseline
-				0x01,                                           // Cell[i].FG.Type
-				0x07,                                           // Cell[i].FG.Idx
-				0x00,                                           // padding
-				0x00,                                           // padding
-				0x01,                                           // Cell[i].BG.Type
-				0x00,                                           // Cell[i].BG.Idx
-				0x00,                                           // padding
-				0x00,                                           // padding
+				0xFF,                                           // Cell[i].FG.Red
+				0xFF,                                           // Cell[i].FG.Green
+				0xFF,                                           // Cell[i].FG.Blue
+				0x00,                                           // Cell[i].BG.Red
+				0x00,                                           // Cell[i].BG.Green
+				0x00,                                           // Cell[i].BG.Blue
 				0x01,                                           // Cell[i].Width
 				0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, // len(Cell[i].Rune)
 				'A', // string(Cell[i].Rune)
@@ -608,14 +576,12 @@ func TestEncodeScreenShot(t *testing.T) {
 				0x02,                                           // Cell[i].Attrs.DHL
 				0x00,                                           // Cell[i].Attrs.Small
 				0x00,                                           // Cell[i].Attrs.Baseline
-				0x01,                                           // Cell[i].FG.Type
-				0x07,                                           // Cell[i].FG.Idx
-				0x00,                                           // padding
-				0x00,                                           // padding
-				0x01,                                           // Cell[i].BG.Type
-				0x00,                                           // Cell[i].BG.Idx
-				0x00,                                           // padding
-				0x00,                                           // padding
+				0xFF,                                           // Cell[i].FG.Red
+				0xFF,                                           // Cell[i].FG.Green
+				0xFF,                                           // Cell[i].FG.Blue
+				0x00,                                           // Cell[i].BG.Red
+				0x00,                                           // Cell[i].BG.Green
+				0x00,                                           // Cell[i].BG.Blue
 				0x01,                                           // Cell[i].Width
 				0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, // len(Cell[i].Rune)
 				'A', // string(Cell[i].Rune)
@@ -632,14 +598,12 @@ func TestEncodeScreenShot(t *testing.T) {
 				0x00,                                           // Cell[i].Attrs.DHL
 				0x01,                                           // Cell[i].Attrs.Small
 				0x00,                                           // Cell[i].Attrs.Baseline
-				0x01,                                           // Cell[i].FG.Type
-				0x07,                                           // Cell[i].FG.Idx
-				0x00,                                           // padding
-				0x00,                                           // padding
-				0x01,                                           // Cell[i].BG.Type
-				0x00,                                           // Cell[i].BG.Idx
-				0x00,                                           // padding
-				0x00,                                           // padding
+				0xFF,                                           // Cell[i].FG.Red
+				0xFF,                                           // Cell[i].FG.Green
+				0xFF,                                           // Cell[i].FG.Blue
+				0x00,                                           // Cell[i].BG.Red
+				0x00,                                           // Cell[i].BG.Green
+				0x00,                                           // Cell[i].BG.Blue
 				0x01,                                           // Cell[i].Width
 				0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, // len(Cell[i].Rune)
 				'A', // string(Cell[i].Rune)
@@ -656,14 +620,12 @@ func TestEncodeScreenShot(t *testing.T) {
 				0x00,                                           // Cell[i].Attrs.DHL
 				0x00,                                           // Cell[i].Attrs.Small
 				0x02,                                           // Cell[i].Attrs.Baseline
-				0x01,                                           // Cell[i].FG.Type
-				0x07,                                           // Cell[i].FG.Idx
-				0x00,                                           // padding
-				0x00,                                           // padding
-				0x01,                                           // Cell[i].BG.Type
-				0x00,                                           // Cell[i].BG.Idx
-				0x00,                                           // padding
-				0x00,                                           // padding
+				0xFF,                                           // Cell[i].FG.Red
+				0xFF,                                           // Cell[i].FG.Green
+				0xFF,                                           // Cell[i].FG.Blue
+				0x00,                                           // Cell[i].BG.Red
+				0x00,                                           // Cell[i].BG.Green
+				0x00,                                           // Cell[i].BG.Blue
 				0x01,                                           // Cell[i].Width
 				0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, // len(Cell[i].Rune)
 				'A', // string(Cell[i].Rune)
@@ -680,11 +642,9 @@ func TestEncodeScreenShot(t *testing.T) {
 				0x00,                                           // Cell[i].Attrs.DHL
 				0x00,                                           // Cell[i].Attrs.Small
 				0x00,                                           // Cell[i].Attrs.Baseline
-				0x00,                                           // Cell[i].FG.Type
 				0x00,                                           // Cell[i].FG.Red
 				0x01,                                           // Cell[i].FG.Green
 				0x02,                                           // Cell[i].FG.Blue
-				0x00,                                           // Cell[i].BG.Type
 				0xFD,                                           // Cell[i].BG.Red
 				0xFE,                                           // Cell[i].BG.Green
 				0xFF,                                           // Cell[i].BG.Blue
@@ -704,35 +664,9 @@ func TestEncodeScreenShot(t *testing.T) {
 				0x00,                                           // Cell[i].Attrs.DHL
 				0x00,                                           // Cell[i].Attrs.Small
 				0x00,                                           // Cell[i].Attrs.Baseline
-				0x03,                                           // Cell[i].FG.Type
-				0x07,                                           // Cell[i].FG.Idx
-				0x00,                                           // padding
-				0x00,                                           // padding
-				0x05,                                           // Cell[i].BG.Type
-				0x00,                                           // Cell[i].BG.Idx
-				0x00,                                           // padding
-				0x00,                                           // padding
-				0x01,                                           // Cell[i].Width
-				0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, // len(Cell[i].Rune)
-				'A', // string(Cell[i].Rune)
-
-				0x00,                                           // Cell[i].Attrs.Bold
-				0x00,                                           // Cell[i].Attrs.Underline
-				0x00,                                           // Cell[i].Attrs.Italic
-				0x00,                                           // Cell[i].Attrs.Blink
-				0x00,                                           // Cell[i].Attrs.Reverse
-				0x00,                                           // Cell[i].Attrs.Conceal
-				0x00,                                           // Cell[i].Attrs.Strike
-				0x00,                                           // Cell[i].Attrs.Font
-				0x00,                                           // Cell[i].Attrs.DWL
-				0x00,                                           // Cell[i].Attrs.DHL
-				0x00,                                           // Cell[i].Attrs.Small
-				0x00,                                           // Cell[i].Attrs.Baseline
-				0x02,                                           // Cell[i].FG.Type
 				0x00,                                           // Cell[i].FG.Red
 				0x01,                                           // Cell[i].FG.Green
 				0x02,                                           // Cell[i].FG.Blue
-				0x04,                                           // Cell[i].BG.Type
 				0xFD,                                           // Cell[i].BG.Red
 				0xFE,                                           // Cell[i].BG.Green
 				0xFF,                                           // Cell[i].BG.Blue
@@ -752,14 +686,34 @@ func TestEncodeScreenShot(t *testing.T) {
 				0x00,                                           // Cell[i].Attrs.DHL
 				0x00,                                           // Cell[i].Attrs.Small
 				0x00,                                           // Cell[i].Attrs.Baseline
-				0x01,                                           // Cell[i].FG.Type
-				0x07,                                           // Cell[i].FG.Idx
-				0x00,                                           // padding
-				0x00,                                           // padding
-				0x01,                                           // Cell[i].BG.Type
-				0x00,                                           // Cell[i].BG.Idx
-				0x00,                                           // padding
-				0x00,                                           // padding
+				0x00,                                           // Cell[i].FG.Red
+				0x00,                                           // Cell[i].FG.Green
+				0x00,                                           // Cell[i].FG.Blue
+				0x00,                                           // Cell[i].BG.Red
+				0x00,                                           // Cell[i].BG.Green
+				0x00,                                           // Cell[i].BG.Blue
+				0x01,                                           // Cell[i].Width
+				0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, // len(Cell[i].Rune)
+				'A', // string(Cell[i].Rune)
+
+				0x00,                                           // Cell[i].Attrs.Bold
+				0x00,                                           // Cell[i].Attrs.Underline
+				0x00,                                           // Cell[i].Attrs.Italic
+				0x00,                                           // Cell[i].Attrs.Blink
+				0x00,                                           // Cell[i].Attrs.Reverse
+				0x00,                                           // Cell[i].Attrs.Conceal
+				0x00,                                           // Cell[i].Attrs.Strike
+				0x00,                                           // Cell[i].Attrs.Font
+				0x00,                                           // Cell[i].Attrs.DWL
+				0x00,                                           // Cell[i].Attrs.DHL
+				0x00,                                           // Cell[i].Attrs.Small
+				0x00,                                           // Cell[i].Attrs.Baseline
+				0xFF,                                           // Cell[i].FG.Red
+				0xFF,                                           // Cell[i].FG.Green
+				0xFF,                                           // Cell[i].FG.Blue
+				0x00,                                           // Cell[i].BG.Red
+				0x00,                                           // Cell[i].BG.Green
+				0x00,                                           // Cell[i].BG.Blue
 				0x01,                                           // Cell[i].Width
 				0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, // len(Cell[i].Rune)
 				'A', // string(Cell[i].Rune)

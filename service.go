@@ -101,7 +101,7 @@ type ScreenService struct {
 }
 
 func (srv *ScreenService) ServeAPI(query url.Values) *ServiceResponse {
-	ss, err := srv.TermSlot.Capture()
+	ss, err := srv.TermSlot.CaptureRGB()
 	if err != nil {
 		srv.Logger.Printf("error: %s", err.Error())
 		return &ServiceResponse{

@@ -39,39 +39,33 @@ func (scr *Screen) SetDefaultColor(fg, bg Color) {
 	C.vterm_screen_set_default_colors(c_screen, &c_fg, &c_bg)
 }
 
+func (scr *Screen) SetPaletteColor(index byte, col Color) {
+	scr.vt.mu.Lock()
+	defer scr.vt.mu.Unlock()
+
+	c_state := C.vterm_obtain_state(scr.vt.vt)
+	c_index := C.int(index)
+	c_col := col.toC()
+	C.vterm_state_set_palette_color(c_state, c_index, &c_col);
+}
+
 func (scr *Screen) Capture() ScreenShot {
 	scr.vt.mu.Lock()
 	defer scr.vt.mu.Unlock()
 
-	rows, cols := scr.vt.size()
-	if rows < 0 {
-		panic("row < 0")
-	}
-	if cols < 0 {
-		panic("col < 0")
-	}
+	return scr.capture()
+}
 
-	cell := make([]Cell, rows*cols)
-	for row := 0; row < rows; row++ {
-		for col := 0; col < cols; col++ {
-			pos := Pos{Row: row, Col: col}
-			c, ok := scr.cell(pos)
-			if !ok {
-				panic("cell not found")
-			}
-			cell[row*cols+col] = c
-		}
-	}
+func (scr *Screen) CaptureRGB() ScreenShot {
+	scr.vt.mu.Lock()
+	defer scr.vt.mu.Unlock()
 
-	c_user := scr.cbdata()
-	return ScreenShot{
-		Stride:        cols,
-		Cell:          cell,
-		CursorPos:     newPosFromC(c_user.cursor_pos),
-		CursorVisible: c_user.cursor_visible != 0,
-		CursorBlink:   c_user.cursor_blink != 0,
-		CursorShape:   CursorShape(c_user.cursor_shape),
+	ss := scr.capture()
+	for idx := range ss.Cell {
+		ss.Cell[idx].FG = scr.convertColorToRGB(ss.Cell[idx].FG)
+		ss.Cell[idx].BG = scr.convertColorToRGB(ss.Cell[idx].BG)
 	}
+	return ss
 }
 
 func (scr *Screen) Cell(pos Pos) (Cell, bool) {
@@ -113,6 +107,45 @@ func (scr *Screen) CursorShape() CursorShape {
 	return CursorShape(c_user.cursor_shape)
 }
 
+func (scr *Screen) ConvertColorToRGB(col Color) Color {
+	scr.vt.mu.Lock()
+	defer scr.vt.mu.Unlock()
+
+	return scr.convertColorToRGB(col)
+}
+
+func (scr *Screen) capture() ScreenShot {
+	rows, cols := scr.vt.size()
+	if rows < 0 {
+		panic("row < 0")
+	}
+	if cols < 0 {
+		panic("col < 0")
+	}
+
+	cell := make([]Cell, rows*cols)
+	for row := 0; row < rows; row++ {
+		for col := 0; col < cols; col++ {
+			pos := Pos{Row: row, Col: col}
+			c, ok := scr.cell(pos)
+			if !ok {
+				panic("cell not found")
+			}
+			cell[row*cols+col] = c
+		}
+	}
+
+	c_user := scr.cbdata()
+	return ScreenShot{
+		Stride:        cols,
+		Cell:          cell,
+		CursorPos:     newPosFromC(c_user.cursor_pos),
+		CursorVisible: c_user.cursor_visible != 0,
+		CursorBlink:   c_user.cursor_blink != 0,
+		CursorShape:   CursorShape(c_user.cursor_shape),
+	}
+}
+
 func (scr *Screen) cell(pos Pos) (Cell, bool) {
 	c_screen := scr.obtain()
 	c_pos := pos.toC()
@@ -124,6 +157,13 @@ func (scr *Screen) cell(pos Pos) (Cell, bool) {
 
 	cell := newCellFromC(c_cell)
 	return cell, true
+}
+
+func (scr *Screen) convertColorToRGB(col Color) Color {
+	c_screen := scr.obtain()
+	c_col := col.toC()
+	C.vterm_screen_convert_color_to_rgb(c_screen, &c_col)
+	return newColorFromC(c_col)
 }
 
 func (scr *Screen) cbdata() *C.CGoVTermScreenUser {
