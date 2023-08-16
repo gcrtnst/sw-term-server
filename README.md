@@ -18,7 +18,7 @@ sw-term-server は Stormworks 上で動作するターミナルエミュレー�
   - バージョン 1.20.7 以上
   - CGo が必要
 - [libvterm](https://www.leonerd.org.uk/code/libvterm/)
-  - バージョン 0.3.2 以上
+  - バージョン 0.3.1 以上
 
 ### Windows
 以下は x86-64 アーキテクチャでの手順です。x86 の場合は適宜読み替えてください。
