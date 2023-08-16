@@ -38,7 +38,7 @@ sw-term-server は Stormworks 上で動作するターミナルエミュレー�
 ディストリビューションにより、パッケージマネージャ等が異なります。詳細な方法は各自で調べてください。
 1. パッケージマネージャを使って、下記ツール/ライブラリをインストールしてください。
     - The Go Programming Language
-    - C コンパイラ（gcc や clang など）
+    - C コンパイラ（gcc もしくは clang など）
     - pkg-config
     - libvterm
       - ヘッダーファイル等を含む開発パッケージが必要です。
