@@ -46,7 +46,7 @@ func (scr *Screen) SetPaletteColor(index byte, col Color) {
 	c_state := C.vterm_obtain_state(scr.vt.vt)
 	c_index := C.int(index)
 	c_col := col.toC()
-	C.vterm_state_set_palette_color(c_state, c_index, &c_col);
+	C.vterm_state_set_palette_color(c_state, c_index, &c_col)
 }
 
 func (scr *Screen) Capture() ScreenShot {
