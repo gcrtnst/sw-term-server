@@ -30,7 +30,7 @@ func New(rows, cols int) *VTerm {
 		vt:  c_vt,
 		out: newOutput(),
 	}
-	runtime.SetFinalizer(vt, (*VTerm).free)
+	runtime.AddCleanup(vt, freeVTerm, c_vt)
 
 	vt.Screen().init()
 	return vt
@@ -100,12 +100,11 @@ func (vt *VTerm) flush() {
 	vt.out.flush(vt.vt)
 }
 
-func (vt *VTerm) free() {
-	vt.Screen().free()
+func freeVTerm(c_vt *C.VTerm) {
+	c_screen := C.vterm_obtain_screen(c_vt)
+	freeScreen(c_screen)
 
-	C.vterm_free(vt.vt)
-	vt.vt = nil
-	vt.out = nil
+	C.vterm_free(c_vt)
 }
 
 type Pos struct {

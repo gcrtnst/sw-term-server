@@ -182,15 +182,14 @@ func (scr *Screen) init() {
 	C.vterm_screen_reset(c_screen, 1)
 }
 
-func (scr *Screen) free() {
-	c_screen := scr.obtain()
+func (scr *Screen) obtain() *C.VTermScreen {
+	return C.vterm_obtain_screen(scr.vt.vt)
+}
+
+func freeScreen(c_screen *C.VTermScreen) {
 	c_user := C.vterm_screen_get_cbdata(c_screen)
 	C.vterm_screen_set_callbacks(c_screen, nil, nil)
 	C.free(c_user)
-}
-
-func (scr *Screen) obtain() *C.VTermScreen {
-	return C.vterm_obtain_screen(scr.vt.vt)
 }
 
 type ScreenShot struct {
