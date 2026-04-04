@@ -63,7 +63,6 @@ func TestMockTerminalOpen(t *testing.T) {
 	}
 
 	for _, tc := range tt {
-		tc := tc
 		t.Run(tc.name, func(t *testing.T) {
 			var gotRecover any
 			func() {
@@ -184,7 +183,6 @@ func TestMockTerminalClose(t *testing.T) {
 	})
 
 	for _, tc := range tt {
-		tc := tc
 		t.Run(tc.name, func(t *testing.T) {
 			var gotRecover any
 			func() {
@@ -295,7 +293,6 @@ func TestMockTerminalSession(t *testing.T) {
 	}
 
 	for _, tc := range tt {
-		tc := tc
 		t.Run(tc.name, func(t *testing.T) {
 			var gotRecover any
 			func() {
@@ -402,7 +399,6 @@ func TestMockSessionStartProcess(t *testing.T) {
 	}
 
 	for _, tc := range tt {
-		tc := tc
 		t.Run(tc.name, func(t *testing.T) {
 			var gotRecover any
 			func() {
@@ -483,7 +479,6 @@ func TestMockSessionGetSize(t *testing.T) {
 	}
 
 	for _, tc := range tt {
-		tc := tc
 		t.Run(tc.name, func(t *testing.T) {
 			var gotRecover any
 			func() {
@@ -560,7 +555,6 @@ func TestMockSessionSetSize(t *testing.T) {
 	}
 
 	for _, tc := range tt {
-		tc := tc
 		t.Run(tc.name, func(t *testing.T) {
 			var gotRecover any
 			func() {
@@ -631,7 +625,6 @@ func TestMockSessionClose(t *testing.T) {
 	}
 
 	for _, tc := range tt {
-		tc := tc
 		t.Run(tc.name, func(t *testing.T) {
 			var gotRecover any
 			func() {

@@ -52,7 +52,6 @@ func TestKeyVTermRune(t *testing.T) {
 	}
 
 	for _, tc := range tt {
-		tc := tc
 		t.Run(tc.name, func(t *testing.T) {
 			gotRune, gotOK := tc.inK.Rune()
 			if gotRune != tc.wantRune {
@@ -87,7 +86,6 @@ func TestKeyVTermKey(t *testing.T) {
 	}
 
 	for _, tc := range tt {
-		tc := tc
 		t.Run(tc.name, func(t *testing.T) {
 			gotVK, gotOK := tc.inK.VTermKey()
 			if gotVK != tc.wantVK {

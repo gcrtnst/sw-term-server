@@ -23,7 +23,6 @@ func TestScreenSetReflow(t *testing.T) {
 	}
 
 	for _, tc := range tt {
-		tc := tc
 
 		name := "Disable"
 		if tc.inReflow {
@@ -63,7 +62,6 @@ func TestScreenSetAltScreen(t *testing.T) {
 	}
 
 	for _, tc := range tt {
-		tc := tc
 
 		name := "Disable"
 		if tc.inAltScreen {
@@ -199,7 +197,6 @@ func TestScreenSetPaletteColor(t *testing.T) {
 	}
 
 	for _, tc := range tt {
-		tc := tc
 		name := fmt.Sprintf("No%d", tc.inIdx)
 		t.Run(name, func(t *testing.T) {
 			gotCol := scr.ConvertColorToRGB(NewColorIndexed(tc.inIdx))
@@ -737,7 +734,6 @@ func TestScreenCell(t *testing.T) {
 	}
 
 	for _, tc := range tt {
-		tc := tc
 		name := fmt.Sprintf("R%dC%d", tc.inPos.Row, tc.inPos.Col)
 		t.Run(name, func(t *testing.T) {
 			gotCell, gotOK := vt.Screen().Cell(tc.inPos)
@@ -892,7 +888,6 @@ func TestScreenConvertColorToRGB(t *testing.T) {
 	scr := vt.Screen()
 
 	for _, tc := range tt {
-		tc := tc
 		t.Run(tc.name, func(t *testing.T) {
 			got := scr.ConvertColorToRGB(tc.in)
 			if !got.Equal(tc.want) {
@@ -941,7 +936,6 @@ func TestScreenShotSize(t *testing.T) {
 	}
 
 	for _, tc := range tt {
-		tc := tc
 		t.Run(tc.name, func(t *testing.T) {
 			gotRow, gotCol := tc.inSS.Size()
 			if gotRow != tc.wantRow || gotCol != tc.wantCol {
@@ -1045,7 +1039,6 @@ func TestScreenShotAt(t *testing.T) {
 	}
 
 	for _, tc := range tt {
-		tc := tc
 		t.Run(tc.name, func(t *testing.T) {
 			gotCell := tc.inSS.At(tc.inPos)
 			if !reflect.DeepEqual(gotCell, tc.wantCell) {

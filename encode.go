@@ -23,8 +23,8 @@ func encodeScreenShot(buf *bytes.Buffer, ss vterm.ScreenShot) {
 	rows, cols := ss.Size()
 	encodeInt(buf, rows)
 	encodeInt(buf, cols)
-	for row := 0; row < rows; row++ {
-		for col := 0; col < cols; col++ {
+	for row := range rows {
+		for col := range cols {
 			pos := vterm.Pos{Row: row, Col: col}
 			cell := ss.At(pos)
 

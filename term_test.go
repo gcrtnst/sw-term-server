@@ -121,7 +121,6 @@ func TestNewTerm(t *testing.T) {
 	}
 
 	for _, tc := range tt {
-		tc := tc
 		t.Run(tc.name, func(t *testing.T) {
 			tc.inCfg.Open = tc.pt.Open
 
@@ -233,7 +232,6 @@ func TestTermKeyboard(t *testing.T) {
 	}
 
 	for _, tc := range tt {
-		tc := tc
 		t.Run(tc.name, func(t *testing.T) {
 			mt := &xpty.MockTerminal{PID: pid}
 			cfg := TermConfig{

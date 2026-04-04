@@ -46,7 +46,6 @@ func TestVTermKeyboardRune(t *testing.T) {
 	}
 
 	for _, tc := range tt {
-		tc := tc
 		t.Run(tc.name, func(t *testing.T) {
 			vt := New(30, 120)
 			out := vt.Output()
@@ -109,7 +108,6 @@ func TestVTermKeyboardKey(t *testing.T) {
 	}
 
 	for _, tc := range tt {
-		tc := tc
 		t.Run(tc.name, func(t *testing.T) {
 			vt := New(30, 120)
 			out := vt.Output()

@@ -53,7 +53,6 @@ func TestColorEqual(t *testing.T) {
 	}
 
 	for _, tc := range tt {
-		tc := tc
 		t.Run(tc.name, func(t *testing.T) {
 			got := tc.inA.Equal(tc.inB)
 			if got != tc.want {

@@ -80,7 +80,6 @@ func TestServiceHandlerServeHTTP(t *testing.T) {
 	}
 
 	for _, tc := range tt {
-		tc := tc
 		t.Run(tc.name, func(t *testing.T) {
 			srv := &MockService{Resp: tc.inResp}
 			rec := httptest.NewRecorder()
@@ -184,11 +183,11 @@ func TestKeyboardServiceServeAPI(t *testing.T) {
 			inErrOpen: nil,
 			wantResp: &ServiceResponse{
 				Code: http.StatusBadRequest,
-				Body: []byte(fmt.Sprintf(`failed to parse parameter "mod": %s`, &strconv.NumError{
+				Body: fmt.Appendf(nil, `failed to parse parameter "mod": %s`, &strconv.NumError{
 					Func: "ParseUint",
 					Num:  "A",
 					Err:  strconv.ErrSyntax,
-				})),
+				}),
 			},
 			wantLog:   []byte{},
 			wantMTOut: []byte{},
@@ -210,7 +209,6 @@ func TestKeyboardServiceServeAPI(t *testing.T) {
 	}
 
 	for _, tc := range tt {
-		tc := tc
 		t.Run(tc.name, func(t *testing.T) {
 			mt := &xpty.MockTerminal{
 				ErrOpen: tc.inErrOpen,
@@ -393,7 +391,6 @@ func TestScreenServiceServeAPI(t *testing.T) {
 	}
 
 	for _, tc := range tt {
-		tc := tc
 		t.Run(tc.name, func(t *testing.T) {
 			mt := &xpty.MockTerminal{
 				ErrOpen: tc.inMTErrOpen,

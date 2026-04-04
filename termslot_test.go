@@ -69,7 +69,6 @@ func TestTermSlotKeyboard(t *testing.T) {
 	}
 
 	for _, tc := range tt {
-		tc := tc
 		t.Run(tc.name, func(t *testing.T) {
 			mt := &xpty.MockTerminal{PID: pid}
 			cfg := TermConfig{
@@ -256,7 +255,6 @@ func TestTermSlotCaptureRGB(t *testing.T) {
 	}
 
 	for _, tc := range tt {
-		tc := tc
 		t.Run(tc.name, func(t *testing.T) {
 			mt := &xpty.MockTerminal{PID: pid}
 			mc := mt.Computer()
@@ -416,7 +414,6 @@ func TestTermSlotStart(t *testing.T) {
 	}
 
 	for _, tc := range tt {
-		tc := tc
 		t.Run(tc.name, func(t *testing.T) {
 			mt := &xpty.MockTerminal{PID: pid}
 			cfg := TermConfig{

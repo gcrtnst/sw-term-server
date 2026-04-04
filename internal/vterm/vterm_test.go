@@ -34,7 +34,6 @@ func TestNew(t *testing.T) {
 	}
 
 	for _, tc := range tt {
-		tc := tc
 		t.Run(tc.name, func(t *testing.T) {
 			vt := New(tc.inRows, tc.inCols)
 			gotRows, gotCols := vt.GetSize()
@@ -81,7 +80,6 @@ func TestVTermSize(t *testing.T) {
 	}
 
 	for _, tc := range tt {
-		tc := tc
 		t.Run(tc.name, func(t *testing.T) {
 			vt := New(60, 240)
 			vt.SetSize(tc.inRows, tc.inCols)

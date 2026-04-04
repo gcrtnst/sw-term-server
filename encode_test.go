@@ -258,8 +258,8 @@ func TestEncodeScreenShot(t *testing.T) {
 						Runes: []rune("A"),
 						Width: 1,
 						Attrs: vterm.CellAttrs{},
-						FG: vterm.NewColorIndexed(7),
-						BG: vterm.NewColorIndexed(7),
+						FG:    vterm.NewColorIndexed(7),
+						BG:    vterm.NewColorIndexed(7),
 					},
 					{
 						Runes: []rune("A"),
@@ -722,7 +722,6 @@ func TestEncodeScreenShot(t *testing.T) {
 	}
 
 	for _, tc := range tt {
-		tc := tc
 		t.Run(tc.name, func(t *testing.T) {
 			got := EncodeScreenShot(tc.in)
 			if !bytes.Equal(got, tc.want) {
@@ -776,7 +775,6 @@ func TestEscapeZero(t *testing.T) {
 	}
 
 	for _, tc := range tt {
-		tc := tc
 		t.Run(tc.name, func(t *testing.T) {
 			got := EscapeZero(tc.in)
 			if !bytes.Equal(got, tc.want) {
